@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_company_addresses",
+  "info": {
+    "displayName": "Address",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "zipCode": {
+      "type": "string"
+    }
+  }
+}

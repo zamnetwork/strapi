@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_company_locations",
+  "info": {
+    "displayName": "Location"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "departments": {
+      "type": "component",
+      "repeatable": true,
+      "component": "company.department"
+    }
+  }
+}

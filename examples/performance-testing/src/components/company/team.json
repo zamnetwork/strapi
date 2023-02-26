@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_company_teams",
+  "info": {
+    "displayName": "Team"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "leader": {
+      "type": "component",
+      "repeatable": false,
+      "component": "company.member"
+    },
+    "members": {
+      "type": "component",
+      "repeatable": true,
+      "component": "company.member"
+    }
+  }
+}

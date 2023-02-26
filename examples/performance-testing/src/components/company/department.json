@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_company_departments",
+  "info": {
+    "displayName": "Department"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "manager": {
+      "type": "component",
+      "repeatable": false,
+      "component": "company.member"
+    },
+    "teams": {
+      "type": "component",
+      "repeatable": true,
+      "component": "company.team"
+    }
+  }
+}

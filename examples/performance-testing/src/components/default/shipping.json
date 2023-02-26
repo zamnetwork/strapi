@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_default_shippings",
+  "info": {
+    "displayName": "Shipping"
+  },
+  "options": {},
+  "attributes": {
+    "weight": {
+      "type": "float"
+    },
+    "dimensions": {
+      "type": "string"
+    },
+    "class": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    },
+    "cost": {
+      "type": "decimal"
+    }
+  }
+}

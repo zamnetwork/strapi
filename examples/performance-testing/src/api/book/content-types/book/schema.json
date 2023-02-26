@@ -1,0 +1,161 @@
+{
+  "kind": "collectionType",
+  "collectionName": "books",
+  "info": {
+    "singularName": "book",
+    "pluralName": "books",
+    "displayName": "Book",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "publicationDate": {
+      "type": "date"
+    },
+    "isbn": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "integer"
+    },
+    "dimensions": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "category": {
+      "type": "string"
+    },
+    "genre": {
+      "type": "string"
+    },
+    "subgenre": {
+      "type": "string"
+    },
+    "edition": {
+      "type": "string"
+    },
+    "printing": {
+      "type": "string"
+    },
+    "series": {
+      "type": "string"
+    },
+    "seriesNumber": {
+      "type": "integer"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "previewImages": {
+      "type": "media",
+      "multiple": true,
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    },
+    "tableOfContents": {
+      "type": "text"
+    },
+    "reviews": {
+      "type": "text",
+      "multiple": true
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "discountPrice": {
+      "type": "decimal"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "availability": {
+      "type": "boolean"
+    },
+    "stock": {
+      "type": "integer"
+    },
+    "returnPolicy": {
+      "type": "text"
+    },
+    "warranty": {
+      "type": "text"
+    },
+    "customerSupport": {
+      "type": "text"
+    },
+    "relatedBooks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book.book"
+    },
+    "recommendedBooks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book.book"
+    },
+    "bestseller": {
+      "type": "boolean"
+    },
+    "newArrival": {
+      "type": "boolean"
+    },
+    "topRated": {
+      "type": "boolean"
+    },
+    "mostViewed": {
+      "type": "boolean"
+    },
+    "mostSold": {
+      "type": "boolean"
+    },
+    "featured": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "string",
+      "multiple": true
+    },
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "string"
+    },
+    "metaKeywords": {
+      "type": "string"
+    },
+    "shipping": {
+      "type": "component",
+      "repeatable": false,
+      "component": "default.shipping"
+    }
+  }
+}
