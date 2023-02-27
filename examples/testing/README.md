@@ -1,4 +1,8 @@
-Performance metrics: - Response time (p90, p95, p99) - Resource usage (CPU, Memory, Disk, Network) (is it possible to get this from k6 ?) - Error rate
+Performance metrics:
+
+- Response time (p90, p95, p99)
+- Resource usage (CPU, Memory, Disk, Network) (is it possible to get this from k6 ?)
+- Error rate
 
 Content types to test (for each one create at least 1000 entries):
 
