@@ -5,10 +5,8 @@ module.exports = () => ({
     enabled: true,
     config: {
       endpoint: '/graphql',
-
       defaultLimit: 25,
       maxLimit: 100,
-
       apolloServer: {
         tracing: true,
       },
@@ -26,6 +24,12 @@ module.exports = () => ({
     resolve: `./src/plugins/myplugin`, // From the root of the project
     config: {
       testConf: 3,
+    },
+  },
+  search: {
+    enabled: true,
+    config: {
+      // provider
     },
   },
 });

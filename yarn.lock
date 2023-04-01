@@ -7462,6 +7462,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@strapi/plugin-search@4.9.0, @strapi/plugin-search@workspace:packages/plugins/search":
+  version: 0.0.0-use.local
+  resolution: "@strapi/plugin-search@workspace:packages/plugins/search"
+  dependencies:
+    eslint-config-custom: "*"
+    rimraf: 3.0.2
+    tsconfig: "*"
+    typescript: 4.6.2
+  languageName: unknown
+  linkType: soft
+
 "@strapi/plugin-sentry@4.9.0, @strapi/plugin-sentry@workspace:packages/plugins/sentry":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-sentry@workspace:packages/plugins/sentry"
@@ -15263,7 +15274,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-custom@workspace:packages/utils/eslint-config-custom":
+"eslint-config-custom@*, eslint-config-custom@workspace:packages/utils/eslint-config-custom":
   version: 0.0.0-use.local
   resolution: "eslint-config-custom@workspace:packages/utils/eslint-config-custom"
   dependencies:
@@ -17208,6 +17219,7 @@ __metadata:
     "@strapi/plugin-documentation": 4.9.0
     "@strapi/plugin-graphql": 4.9.0
     "@strapi/plugin-i18n": 4.9.0
+    "@strapi/plugin-search": 4.9.0
     "@strapi/plugin-sentry": 4.9.0
     "@strapi/plugin-users-permissions": 4.9.0
     "@strapi/provider-email-mailgun": 4.9.0
@@ -30101,7 +30113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsconfig@workspace:packages/utils/tsconfig":
+"tsconfig@*, tsconfig@workspace:packages/utils/tsconfig":
   version: 0.0.0-use.local
   resolution: "tsconfig@workspace:packages/utils/tsconfig"
   languageName: unknown
