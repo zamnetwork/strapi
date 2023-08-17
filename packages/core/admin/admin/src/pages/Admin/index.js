@@ -19,11 +19,6 @@ import useMenu from '../../hooks/useMenu';
 import { createRoute } from '../../utils/createRoute';
 import { SET_APP_RUNTIME_STATUS } from '../App/constants';
 
-const CM = React.lazy(() =>
-  import(/* webpackChunkName: "content-manager" */ '../../content-manager/pages/App').then(
-    (module) => ({ default: module.ContentManger })
-  )
-);
 const GuidedTourModal = React.lazy(() =>
   import(/* webpackChunkName: "Admin_GuidedTourModal" */ '../../components/GuidedTour/Modal').then(
     (module) => ({ default: module.GuidedTourModal })
@@ -95,6 +90,8 @@ export const Admin = () => {
     return <LoadingIndicatorPage />;
   }
 
+  console.log({ menu })
+
   return (
     <DndProvider backend={HTML5Backend}>
       <Flex alignItems="stretch">
@@ -108,7 +105,6 @@ export const Admin = () => {
             <Switch>
               <Route path="/" component={HomePage} exact />
               <Route path="/me" component={ProfilePage} exact />
-              <Route path="/content-manager" component={CM} />
               {routes}
               <Route path="/settings/:settingId" component={SettingsPage} />
               <Route path="/settings" component={SettingsPage} exact />

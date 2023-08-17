@@ -75,6 +75,8 @@ export { useQuery } from './hooks/useQuery';
 export { useQueryParams } from './hooks/useQueryParams';
 export { useRBAC } from './hooks/useRBAC';
 export { useSelectionState } from './hooks/useSelectionState';
+export * from './hooks/useDragAndDrop';
+export * from './hooks/useKeyboardDragAndDrop';
 
 /* -------------------------------------------------------------------------------------------------
  * Icons
@@ -107,3 +109,4 @@ export { setHexOpacity } from './utils/setHexOpacity';
 export * from './utils/stopPropagation';
 export { translatedErrors } from './utils/translatedErrors';
 export { wrapAxiosInstance } from './utils/wrapAxiosInstance';
+export * from './utils/composeRefs';

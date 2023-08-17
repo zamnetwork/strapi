@@ -103,6 +103,8 @@ class StrapiApp {
   addMenuLink = (link) => {
     const stringifiedLink = JSON.stringify(link);
 
+    console.log('add link', link);
+
     invariant(link.to, `link.to should be defined for ${stringifiedLink}`);
     invariant(
       typeof link.to === 'string',
@@ -407,6 +409,8 @@ class StrapiApp {
   registerPlugin = (pluginConf) => {
     const plugin = Plugin(pluginConf);
 
+    console.log('register', pluginConf)
+
     this.plugins[plugin.pluginId] = plugin;
   };
 
@@ -429,6 +433,8 @@ class StrapiApp {
       components: { components },
       fields: { fields },
     } = this.library;
+
+    console.log(this);
 
     return (
       <Providers

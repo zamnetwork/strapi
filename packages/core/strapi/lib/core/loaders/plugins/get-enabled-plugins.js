@@ -118,6 +118,8 @@ const getEnabledPlugins = async (strapi) => {
     pickBy((p) => p.enabled)
   )(internalPlugins);
 
+  console.log({ enabledPlugins })
+
   return enabledPlugins;
 };
 

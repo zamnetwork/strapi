@@ -18,7 +18,7 @@ import {
   usePersistentState,
   useTracking,
 } from '@strapi/helper-plugin';
-import { Exit, Write } from '@strapi/icons';
+import { Exit } from '@strapi/icons';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { NavLink as RouterNavLink, useHistory, useLocation } from 'react-router-dom';
@@ -124,15 +124,6 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }) => {
       <Divider />
 
       <NavSections>
-        <NavLink
-          as={RouterNavLink}
-          to="/content-manager"
-          icon={<Write />}
-          onClick={() => handleClickOnLink('/content-manager')}
-        >
-          {formatMessage({ id: 'global.content-manager', defaultMessage: 'Content manager' })}
-        </NavLink>
-
         {pluginsSectionLinks.length > 0 ? (
           <NavSection
             label={formatMessage({

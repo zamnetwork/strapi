@@ -62,6 +62,8 @@ function renderDraglayerItem({ type, item }) {
 }
 
 export const ContentManger = () => {
+  console.log('here i am')
+
   const contentTypeMatch = useRouteMatch(`/content-manager/:kind/:uid`);
   const { status, collectionTypeLinks, singleTypeLinks, models, refetchData } =
     useContentManagerInitData();
