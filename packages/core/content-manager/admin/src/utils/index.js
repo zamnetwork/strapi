@@ -1,6 +1,5 @@
 export { default as arrayMoveItem } from './arrayMoveItem';
 export { default as checkIfAttributeIsDisplayable } from './checkIfAttributeIsDisplayable';
-export { composeRefs } from './composeRefs';
 export { default as createDefaultForm } from './createDefaultForm';
 export { default as formatLayoutToApi } from './formatLayoutToApi';
 export { default as generatePermissionsObject } from './generatePermissionsObject';

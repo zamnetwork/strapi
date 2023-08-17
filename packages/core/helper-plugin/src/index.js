@@ -77,6 +77,7 @@ export { useRBAC } from './hooks/useRBAC';
 export { useSelectionState } from './hooks/useSelectionState';
 export * from './hooks/useDragAndDrop';
 export * from './hooks/useKeyboardDragAndDrop';
+export * from './hooks/useDebounce';
 
 /* -------------------------------------------------------------------------------------------------
  * Icons

@@ -6,14 +6,12 @@
 
 import React from 'react';
 
-import { darkTheme, lightTheme } from '@strapi/design-system';
+import { lightTheme, Theme } from '@strapi/design-system';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 
-import Theme from '../../../../../components/Theme';
-import ThemeToggleProvider from '../../../../../components/ThemeToggleProvider';
-import { Header } from '../index';
+import { Header } from '..';
 
 import ct from './data/ct-schema.json';
 
@@ -39,11 +37,9 @@ const makeApp = (props = defaultProps) => {
   return (
     <MemoryRouter>
       <IntlProvider locale="en" defaultLocale="en" messages={{}}>
-        <ThemeToggleProvider themes={{ light: lightTheme, dark: darkTheme }}>
-          <Theme>
-            <Header {...props} />
-          </Theme>
-        </ThemeToggleProvider>
+        <Theme theme={lightTheme}>
+          <Header {...props} />
+        </Theme>
       </IntlProvider>
     </MemoryRouter>
   );

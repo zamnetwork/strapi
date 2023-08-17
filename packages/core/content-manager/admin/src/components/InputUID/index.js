@@ -4,14 +4,13 @@ import { Flex, TextInput, Typography } from '@strapi/design-system';
 import {
   useAPIErrorHandler,
   useCMEditViewDataManager,
+  useDebounce,
   useFetchClient,
   useNotification,
 } from '@strapi/helper-plugin';
 import { CheckCircle, ExclamationMarkCircle, Loader, Refresh } from '@strapi/icons';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
-
-import useDebounce from '../../../hooks/useDebounce';
 
 import { FieldActionWrapper, LoadingWrapper, TextValidation } from './endActionStyle';
 import UID_REGEX from './regex';
