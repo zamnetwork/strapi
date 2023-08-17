@@ -119,11 +119,8 @@ function ListView({
   const reviewWorkflowColumns = useEnterprise(
     REVIEW_WORKFLOW_COLUMNS_CE,
     async () =>
-      (
-        await import(
-          '../../../../../ee/admin/content-manager/pages/ListView/ReviewWorkflowsColumn/constants'
-        )
-      ).REVIEW_WORKFLOW_COLUMNS_EE,
+      (await import('../../../../ee/admin/pages/ListView/ReviewWorkflowsColumn/constants'))
+        .REVIEW_WORKFLOW_COLUMNS_EE,
     {
       enabled: !!options?.reviewWorkflows,
     }
@@ -131,7 +128,7 @@ function ListView({
   const ReviewWorkflowsStage = useEnterprise(
     REVIEW_WORKFLOW_COLUMNS_CELL_CE,
     async () =>
-      (await import('../../../../../ee/admin/content-manager/pages/ListView/ReviewWorkflowsColumn'))
+      (await import('../../../../ee/admin/pages/ListView/ReviewWorkflowsColumn'))
         .ReviewWorkflowsStageEE,
     {
       enabled: hasReviewWorkflows,

@@ -10,7 +10,7 @@ import {
   VisuallyHidden,
 } from '@strapi/design-system';
 import { Menu, MenuItem } from '@strapi/design-system/v2';
-import { useCMEditViewDataManager } from '@strapi/helper-plugin';
+import { useDragAndDrop, composeRefs, useCMEditViewDataManager } from '@strapi/helper-plugin';
 import { Drag, More, Trash } from '@strapi/icons';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
@@ -18,8 +18,8 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import { useContentTypeLayout, useDragAndDrop } from '../../../hooks';
-import { composeRefs, getTrad, ItemTypes } from '../../../utils';
+import { useContentTypeLayout } from '../../../hooks';
+import { getTrad, ItemTypes } from '../../../utils';
 import { ComponentIcon } from '../../ComponentIcon';
 import FieldComponent from '../../FieldComponent';
 

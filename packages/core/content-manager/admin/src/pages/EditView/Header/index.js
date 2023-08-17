@@ -14,7 +14,6 @@ import { Link } from '@strapi/helper-plugin';
 import { ArrowLeft, Check, ExclamationMarkCircle } from '@strapi/icons';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
-import isEqualFastCompare from 'lodash/isEqual';
 import isEqual from 'lodash/isEqual';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
@@ -297,7 +296,7 @@ Header.propTypes = {
   onPublishPromptDismissal: PropTypes.func.isRequired,
 };
 
-const Memoized = memo(Header, isEqualFastCompare);
+const Memoized = memo(Header, isEqual);
 
 export default connect(Memoized, select);
 export { Header };

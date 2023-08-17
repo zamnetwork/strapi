@@ -46,8 +46,7 @@ const EditView = ({ allowedActions, isSingleType, goBack, slug, id, origin, user
   const Information = useEnterprise(
     InformationBoxCE,
     async () =>
-      (await import('../../../../../ee/admin/content-manager/pages/EditView/InformationBox'))
-        .InformationBoxEE
+      (await import('../../../../ee/admin/pages/EditView/InformationBox')).InformationBoxEE
   );
 
   useOnce(() => {
