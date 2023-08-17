@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   overrides: [
     {
-      files: ['admin/**/*'],
+      files: ['admin/**/*', 'ee/admin/**/*'],
       extends: ['custom/front'],
     },
     {
