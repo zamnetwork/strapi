@@ -10,13 +10,11 @@ import {
   Tr,
   Typography,
 } from '@strapi/design-system';
-import { onRowClick, stopPropagation } from '@strapi/helper-plugin';
+import { getFullName, onRowClick, stopPropagation } from '@strapi/helper-plugin';
 import { Pencil, Trash } from '@strapi/icons';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
-
-import { getFullName } from '../../../../../../../utils/getFullName';
 
 const TableRows = ({
   canDelete,
