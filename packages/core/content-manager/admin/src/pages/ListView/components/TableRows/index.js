@@ -11,6 +11,7 @@ import {
   Typography,
 } from '@strapi/design-system';
 import {
+  useEnterprise,
   useTracking,
   useFetchClient,
   useAPIErrorHandler,
@@ -22,7 +23,6 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Link, useHistory } from 'react-router-dom';
 
-import { useEnterprise } from '../../../../../hooks/useEnterprise';
 import { getFullName } from '../../../../../utils/getFullName';
 import { usePluginsQueryParams } from '../../../../hooks';
 import { getTrad } from '../../../../utils';

@@ -6,6 +6,7 @@ import {
   LoadingIndicatorPage,
   prefixFileUrlWithBackendUrl,
   TrackingProvider,
+  useEnterprise,
   useFetchClient,
 } from '@strapi/helper-plugin';
 import merge from 'lodash/merge';
@@ -17,7 +18,6 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from '../../components/PrivateRoute';
 import { ADMIN_PERMISSIONS_CE } from '../../constants';
 import useConfigurations from '../../hooks/useConfigurations';
-import { useEnterprise } from '../../hooks/useEnterprise';
 
 import { AUTH_ROUTES_CE, SET_ADMIN_PERMISSIONS } from './constants';
 

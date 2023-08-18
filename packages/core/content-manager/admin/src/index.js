@@ -32,12 +32,12 @@ export default {
     });
   },
 
-  bootstrap() {
+  bootstrap(app) {
     console.log('CM boot')
 
-    this.createHook(INJECT_COLUMN_IN_TABLE);
-    this.createHook(MUTATE_COLLECTION_TYPES_LINKS);
-    this.createHook(MUTATE_SINGLE_TYPES_LINKS);
-    this.createHook(MUTATE_EDIT_VIEW_LAYOUT);
+    app.createHook(INJECT_COLUMN_IN_TABLE);
+    app.createHook(MUTATE_COLLECTION_TYPES_LINKS);
+    app.createHook(MUTATE_SINGLE_TYPES_LINKS);
+    app.createHook(MUTATE_EDIT_VIEW_LAYOUT);
   },
 };

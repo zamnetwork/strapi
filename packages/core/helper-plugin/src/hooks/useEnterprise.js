@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useCallbackRef } from '@strapi/helper-plugin';
+import { useCallbackRef } from './useCallbackRef';
 
 function isEnterprise() {
   return window.strapi.isEE;

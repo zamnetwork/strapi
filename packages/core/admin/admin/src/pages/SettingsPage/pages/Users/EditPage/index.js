@@ -19,6 +19,7 @@ import {
   LoadingIndicatorPage,
   SettingsPageTitle,
   useAppInfo,
+  useEnterprise,
   useFocusWhenNavigate,
   useNotification,
   useOverlayBlocker,
@@ -33,7 +34,6 @@ import { useIntl } from 'react-intl';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import { useAdminUsers } from '../../../../../hooks/useAdminUsers';
-import { useEnterprise } from '../../../../../hooks/useEnterprise';
 import { formatAPIErrors } from '../../../../../utils/formatAPIErrors';
 import { getFullName } from '../../../../../utils/getFullName';
 import { MagicLinkCE } from '../components/MagicLink';

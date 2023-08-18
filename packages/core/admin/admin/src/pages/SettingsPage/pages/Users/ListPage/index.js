@@ -7,6 +7,7 @@ import {
   SearchURLQuery,
   SettingsPageTitle,
   useAPIErrorHandler,
+  useEnterprise,
   useFetchClient,
   useFocusWhenNavigate,
   useNotification,
@@ -19,7 +20,6 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { useAdminUsers } from '../../../../../hooks/useAdminUsers';
-import { useEnterprise } from '../../../../../hooks/useEnterprise';
 import { selectAdminPermissions } from '../../../../App/selectors';
 import Filters from '../../../components/Filters';
 

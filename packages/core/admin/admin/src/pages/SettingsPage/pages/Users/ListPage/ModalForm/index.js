@@ -16,6 +16,7 @@ import { Breadcrumbs, Crumb } from '@strapi/design-system/v2';
 import {
   Form,
   GenericInput,
+  useEnterprise,
   useFetchClient,
   useNotification,
   useOverlayBlocker,
@@ -25,7 +26,6 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useMutation } from 'react-query';
 
-import { useEnterprise } from '../../../../../../hooks/useEnterprise';
 import { MagicLinkCE } from '../../components/MagicLink';
 import SelectRoles from '../../components/SelectRoles';
 

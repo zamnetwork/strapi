@@ -32,6 +32,7 @@ import {
   Table,
   PaginationURLQuery,
   PageSizeURLQuery,
+  useEnterprise,
 } from '@strapi/helper-plugin';
 import { ArrowLeft, Cog, Plus } from '@strapi/icons';
 import axios, { AxiosError } from 'axios';
@@ -45,7 +46,6 @@ import { useHistory, useLocation, Link as ReactRouterLink } from 'react-router-d
 import { bindActionCreators, compose } from 'redux';
 import styled from 'styled-components';
 
-import { useEnterprise } from '../../../hooks/useEnterprise';
 import { InjectionZone } from '../../../shared/components';
 import AttributeFilter from '../../components/AttributeFilter';
 import { INJECT_COLUMN_IN_TABLE } from '../../exposedHooks';

@@ -5,6 +5,7 @@ import {
   CheckPermissions,
   LinkButton,
   LoadingIndicatorPage,
+  useEnterprise,
   useNotification,
   useTracking,
 } from '@strapi/helper-plugin';
@@ -14,7 +15,6 @@ import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import { useEnterprise } from '../../../hooks/useEnterprise';
 import { InjectionZone } from '../../../shared/components';
 import CollectionTypeFormWrapper from '../../components/CollectionTypeFormWrapper';
 import { DynamicZone } from '../../components/DynamicZone';

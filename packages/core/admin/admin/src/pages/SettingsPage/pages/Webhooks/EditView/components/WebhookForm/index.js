@@ -10,13 +10,12 @@ import {
   HeaderLayout,
   TextInput,
 } from '@strapi/design-system';
-import { Form, Link } from '@strapi/helper-plugin';
+import { Form, Link, useEnterprise } from '@strapi/helper-plugin';
 import { ArrowLeft, Check, Play as Publish } from '@strapi/icons';
 import { Field, FormikProvider, useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
-import { useEnterprise } from '../../../../../../../hooks/useEnterprise';
 import { EventTableCE } from '../EventTable';
 import HeadersInput from '../HeadersInput';
 import TriggerContainer from '../TriggerContainer';

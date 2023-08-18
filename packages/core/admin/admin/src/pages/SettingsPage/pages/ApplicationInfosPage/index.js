@@ -18,6 +18,7 @@ import {
   SettingsPageTitle,
   useAPIErrorHandler,
   useAppInfo,
+  useEnterprise,
   useFetchClient,
   useFocusWhenNavigate,
   useNotification,
@@ -30,7 +31,6 @@ import { useMutation, useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 
 import { useConfigurations } from '../../../../hooks';
-import { useEnterprise } from '../../../../hooks/useEnterprise';
 import { selectAdminPermissions } from '../../../App/selectors';
 
 import CustomizationInfos from './components/CustomizationInfos';
