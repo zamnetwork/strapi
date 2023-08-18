@@ -168,6 +168,7 @@ class StrapiApp {
         bootstrap({
           addSettingsLink: this.addSettingsLink,
           addSettingsLinks: this.addSettingsLinks,
+          createHook: this.createHook,
           getPlugin: this.getPlugin,
           injectContentManagerComponent: this.injectContentManagerComponent,
           injectAdminComponent: this.injectAdminComponent,
@@ -398,7 +399,7 @@ class StrapiApp {
   registerPlugin = (pluginConf) => {
     const plugin = Plugin(pluginConf);
 
-    console.log('register', pluginConf)
+    console.log('register', pluginConf);
 
     this.plugins[plugin.pluginId] = plugin;
   };

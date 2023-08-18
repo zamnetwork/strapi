@@ -9,8 +9,6 @@ import {
 
 export default {
   register(app) {
-    console.log('hello?')
-
     app.addMenuLink({
       to: `/content-manager/`,
       icon: Write,
@@ -33,8 +31,6 @@ export default {
   },
 
   bootstrap(app) {
-    console.log('CM boot')
-
     app.createHook(INJECT_COLUMN_IN_TABLE);
     app.createHook(MUTATE_COLLECTION_TYPES_LINKS);
     app.createHook(MUTATE_SINGLE_TYPES_LINKS);
