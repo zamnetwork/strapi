@@ -4,7 +4,7 @@ import { LoadingIndicatorPage, useQueryParams, useStrapiApp } from '@strapi/help
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { MUTATE_EDIT_VIEW_LAYOUT } from '../../../exposedHooks';
+import { MUTATE_EDIT_VIEW_LAYOUT } from '../../exposedHooks';
 import { useSyncRbac } from '../../hooks';
 
 import { resetProps, setLayout } from './actions';

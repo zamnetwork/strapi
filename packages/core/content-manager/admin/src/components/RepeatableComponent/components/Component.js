@@ -11,7 +11,7 @@ import {
   GridItem,
   IconButton,
 } from '@strapi/design-system';
-import { useCMEditViewDataManager } from '@strapi/helper-plugin';
+import { composeRefs, useCMEditViewDataManager, useDragAndDrop } from '@strapi/helper-plugin';
 import { Drag, Trash } from '@strapi/icons';
 import get from 'lodash/get';
 import toString from 'lodash/toString';
@@ -20,9 +20,8 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import { useDragAndDrop } from '../../../hooks/useDragAndDrop';
 import useLazyComponents from '../../../hooks/useLazyComponents';
-import { composeRefs, getTrad, ItemTypes } from '../../../utils';
+import { getTrad, ItemTypes } from '../../../utils';
 import FieldComponent from '../../FieldComponent';
 import Inputs from '../../Inputs';
 

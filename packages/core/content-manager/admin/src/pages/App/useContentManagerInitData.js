@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { MUTATE_COLLECTION_TYPES_LINKS, MUTATE_SINGLE_TYPES_LINKS } from '../../../exposedHooks';
+import { MUTATE_COLLECTION_TYPES_LINKS, MUTATE_SINGLE_TYPES_LINKS } from '../../exposedHooks';
 import { getTrad } from '../../utils';
 
 import { getInitData, resetInitData, setInitData } from './actions';

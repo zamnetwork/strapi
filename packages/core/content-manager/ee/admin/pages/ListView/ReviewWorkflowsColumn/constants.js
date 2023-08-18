@@ -1,4 +1,4 @@
-import getTrad from '../../../../../../admin/src/content-manager/utils/getTrad';
+import getTrad from '../../../../../admin/src/utils/getTrad';
 
 export const REVIEW_WORKFLOW_COLUMNS_EE = {
   key: '__strapi_stage_temp_key__',
