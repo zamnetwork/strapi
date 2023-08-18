@@ -15,13 +15,13 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { useEnterprise } from '../../../hooks/useEnterprise';
-import { selectAdminPermissions } from '../../../pages/App/selectors';
 import { InjectionZone } from '../../../shared/components';
 import CollectionTypeFormWrapper from '../../components/CollectionTypeFormWrapper';
 import { DynamicZone } from '../../components/DynamicZone';
 import EditViewDataManagerProvider from '../../components/EditViewDataManagerProvider';
 import SingleTypeFormWrapper from '../../components/SingleTypeFormWrapper';
 import useLazyComponents from '../../hooks/useLazyComponents';
+import { selectAdminPermissions } from '../../selectors';
 import { getTrad } from '../../utils';
 
 import DeleteLink from './DeleteLink';

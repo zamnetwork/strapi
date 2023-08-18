@@ -14,12 +14,6 @@ import Providers from './components/Providers';
 import { customFields, Plugin } from './core/apis';
 import configureStore from './core/store/configureStore';
 import { basename, createHook } from './core/utils';
-import {
-  INJECT_COLUMN_IN_TABLE,
-  MUTATE_COLLECTION_TYPES_LINKS,
-  MUTATE_EDIT_VIEW_LAYOUT,
-  MUTATE_SINGLE_TYPES_LINKS,
-} from './exposedHooks';
 import favicon from './favicon.png';
 import injectionZones from './injectionZones';
 import { App } from './pages/App';
@@ -200,11 +194,6 @@ class StrapiApp {
 
   bootstrapAdmin = async () => {
     await this.createCustomConfigurations();
-
-    this.createHook(INJECT_COLUMN_IN_TABLE);
-    this.createHook(MUTATE_COLLECTION_TYPES_LINKS);
-    this.createHook(MUTATE_SINGLE_TYPES_LINKS);
-    this.createHook(MUTATE_EDIT_VIEW_LAYOUT);
 
     return Promise.resolve();
   };

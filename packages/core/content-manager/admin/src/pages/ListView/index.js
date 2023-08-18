@@ -46,10 +46,10 @@ import { bindActionCreators, compose } from 'redux';
 import styled from 'styled-components';
 
 import { useEnterprise } from '../../../hooks/useEnterprise';
-import { selectAdminPermissions } from '../../../pages/App/selectors';
 import { InjectionZone } from '../../../shared/components';
 import AttributeFilter from '../../components/AttributeFilter';
 import { INJECT_COLUMN_IN_TABLE } from '../../exposedHooks';
+import { selectAdminPermissions } from '../../selectors';
 import { getTrad } from '../../utils';
 
 import { getData, getDataSucceeded, onChangeListHeaders, onResetListHeaders } from './actions';
