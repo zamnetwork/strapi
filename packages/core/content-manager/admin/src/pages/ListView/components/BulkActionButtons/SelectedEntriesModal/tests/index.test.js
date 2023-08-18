@@ -20,7 +20,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { combineReducers, createStore } from 'redux';
 
 import SelectedEntriesModal from '..';
-import reducers from '../../../../../../../reducers';
+import reducers from '../../../../reducer';
 
 jest.mock('@strapi/helper-plugin', () => ({
   ...jest.requireActual('@strapi/helper-plugin'),
@@ -89,23 +89,6 @@ const handlers = [
 
 const server = setupServer(...handlers);
 
-const rootReducer = combineReducers(reducers);
-const store = createStore(rootReducer, {
-  'content-manager_listView': {
-    contentType: {
-      uid: 'api::test.test',
-      settings: {
-        mainField: 'name',
-      },
-      attributes: {
-        id: { type: 'integer' },
-        name: { type: 'string', required: true },
-      },
-    },
-    components: [],
-  },
-});
-
 const user = userEvent.setup();
 
 const render = (ui) => ({
@@ -122,7 +105,21 @@ const render = (ui) => ({
       return (
         <ThemeProvider theme={lightTheme}>
           <IntlProvider locale="en" messages={{}} defaultLocale="en">
-            <Provider store={store}>
+            <Provider store={createStore(reducers, {
+              'content-manager_listView': {
+                contentType: {
+                  uid: 'api::test.test',
+                  settings: {
+                    mainField: 'name',
+                  },
+                  attributes: {
+                    id: { type: 'integer' },
+                    name: { type: 'string', required: true },
+                  },
+                },
+                components: [],
+              },
+            })}>
               <QueryClientProvider client={client}>
                 <MemoryRouter>{children}</MemoryRouter>
               </QueryClientProvider>

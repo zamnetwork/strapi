@@ -9,10 +9,10 @@ import { IntlProvider } from 'react-intl';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import { combineReducers, createStore } from 'redux';
+import { createStore } from 'redux';
 
 import { ConfirmBulkActionDialog, ConfirmDialogPublishAll } from '..';
-import reducers from '../../../../../../../reducers';
+import reducers from '../../../../reducer';
 
 jest.mock('../../../../../../../shared/hooks', () => ({
   ...jest.requireActual('../../../../../../../shared/hooks'),
@@ -48,21 +48,6 @@ const handlers = [
 ];
 
 const server = setupServer(...handlers);
-
-const rootReducer = combineReducers(reducers);
-const store = createStore(rootReducer, {
-  'content-manager_listView': {
-    data: [
-      { id: 1, publishedAt: null },
-      { id: 2, publishedAt: '2023-01-01T10:10:10.408Z' },
-    ],
-    contentType: {
-      settings: {
-        mainField: 'name',
-      },
-    },
-  },
-});
 
 describe('ConfirmBulkActionDialog', () => {
   const Component = (props) => (
@@ -112,19 +97,33 @@ describe('ConfirmDialogPublishAll', () => {
 
   const render = (props) => ({
     ...renderRTL(<Component {...props} />, {
-      wrapper: ({ children }) => (
-        <ThemeProvider theme={lightTheme}>
-          <QueryClientProvider client={client}>
-            <IntlProvider locale="en" messages={{}} defaultLocale="en">
-              <Provider store={store}>
-                <MemoryRouter>
-                  <Table.Root defaultSelectedEntries={[1, 2]}>{children}</Table.Root>
-                </MemoryRouter>
-              </Provider>
-            </IntlProvider>
-          </QueryClientProvider>
-        </ThemeProvider>
-      ),
+      wrapper({ children }) {
+        return (
+          <ThemeProvider theme={lightTheme}>
+            <QueryClientProvider client={client}>
+              <IntlProvider locale="en" messages={{}} defaultLocale="en">
+                <Provider store={createStore(reducers, {
+                  'content-manager_listView': {
+                    data: [
+                      { id: 1, publishedAt: null },
+                      { id: 2, publishedAt: '2023-01-01T10:10:10.408Z' },
+                    ],
+                    contentType: {
+                      settings: {
+                        mainField: 'name',
+                      },
+                    },
+                  },
+                })}>
+                  <MemoryRouter>
+                    <Table.Root defaultSelectedEntries={[1, 2]}>{children}</Table.Root>
+                  </MemoryRouter>
+                </Provider>
+              </IntlProvider>
+            </QueryClientProvider>
+          </ThemeProvider>
+        )
+      },
     }),
   });
 

@@ -7,10 +7,10 @@ import userEvent from '@testing-library/user-event';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { combineReducers, createStore } from 'redux';
+import { createStore } from 'redux';
 
 import BulkActionButtons from '..';
-import reducers from '../../../../../../reducers';
+import reducers from '../../../reducer';
 
 const toggleNotification = jest.fn();
 
@@ -34,28 +34,25 @@ jest.mock('../SelectedEntriesModal', () => () => <div>SelectedEntriesModal</div>
 
 const user = userEvent.setup();
 
-const rootReducer = combineReducers(reducers);
-const store = createStore(rootReducer, {
-  'content-manager_listView': {
-    data: [
-      { id: 1, publishedAt: null },
-      { id: 2, publishedAt: '2023-01-01T10:10:10.408Z' },
-    ],
-    contentType: {
-      settings: {
-        mainField: 'name',
-      },
-    },
-  },
-});
-
 const setup = (props) => ({
   ...render(<BulkActionButtons {...props} />, {
     wrapper({ children }) {
       return (
         <ThemeProvider theme={lightTheme}>
           <IntlProvider locale="en" messages={{}} defaultLocale="en">
-            <Provider store={store}>
+            <Provider store={createStore(reducers, {
+              'content-manager_listView': {
+                data: [
+                  { id: 1, publishedAt: null },
+                  { id: 2, publishedAt: '2023-01-01T10:10:10.408Z' },
+                ],
+                contentType: {
+                  settings: {
+                    mainField: 'name',
+                  },
+                },
+              },
+            })}>
               <MemoryRouter>
                 <Table.Root>{children}</Table.Root>
               </MemoryRouter>
