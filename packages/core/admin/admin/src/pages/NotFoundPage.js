@@ -11,7 +11,7 @@ import { LinkButton, useFocusWhenNavigate } from '@strapi/helper-plugin';
 import { ArrowRight, EmptyPictures } from '@strapi/icons';
 import { useIntl } from 'react-intl';
 
-export const NotFoundPage = () => {
+const NoContentType = () => {
   const { formatMessage } = useIntl();
   useFocusWhenNavigate();
 
@@ -46,3 +46,5 @@ export const NotFoundPage = () => {
     </Main>
   );
 };
+
+export default NoContentType;
