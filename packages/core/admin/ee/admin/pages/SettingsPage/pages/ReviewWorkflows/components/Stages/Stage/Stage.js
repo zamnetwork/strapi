@@ -5,7 +5,6 @@ import {
   AccordionContent,
   AccordionToggle,
   Box,
-  Button,
   Flex,
   Grid,
   GridItem,
@@ -26,7 +25,7 @@ import {
   NotAllowedInput,
   useTracking,
 } from '@strapi/helper-plugin';
-import { Drag, More } from '@strapi/icons';
+import { Drag, Duplicate, More } from '@strapi/icons';
 import { useField } from 'formik';
 import PropTypes from 'prop-types';
 import { getEmptyImage } from 'react-dnd-html5-backend';
@@ -463,18 +462,16 @@ export function Stage({
                       })}
                     </MultiSelect>
 
-                    <Button
+                    <IconButton
                       disabled={!canUpdate}
-                      size="L"
-                      type="button"
-                      variant="secondary"
-                      onClick={() => handleApplyPermissionsToAllStages(permissionsField.value)}
-                    >
-                      {formatMessage({
+                      icon={<Duplicate />}
+                      label={formatMessage({
                         id: 'Settings.review-workflows.stage.permissions.apply.label',
                         defaultMessage: 'Apply to all stages',
                       })}
-                    </Button>
+                      size="L"
+                      onClick={() => handleApplyPermissionsToAllStages(permissionsField.value)}
+                    />
                   </Flex>
                 )}
               </GridItem>
