@@ -39,6 +39,8 @@ const config: Config = defineConfig({
    * what they look like in the package.json
    */
   exports: {},
+  // If you don't include this, it seems to think vite needs to be bundled, which isn't true.
+  externals: ['vite'],
   plugins: [
     {
       name: 'treat-js-files-as-jsx',
