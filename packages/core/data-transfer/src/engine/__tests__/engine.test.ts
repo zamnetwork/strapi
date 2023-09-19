@@ -231,10 +231,10 @@ type Entity = IEntity<
 
 const getEntitiesMockSourceStream = (
   data: Array<Entity> = [
-    { id: 1, type: 'api::foo.foo', data: { foo: 'bar' } },
-    { id: 2, type: 'api::bar.bar', data: { bar: 'foo' } },
-    { id: 1, type: 'admin::permission', data: { foo: 'bar' } },
-    { id: 2, type: 'api::homepage.homepage', data: { bar: 'foo' } },
+    { id: 1, type: 'api::foo.foo', data: { id: 1, foo: 'bar' } },
+    { id: 2, type: 'api::bar.bar', data: { id: 2, bar: 'foo' } },
+    { id: 1, type: 'admin::permission', data: { id: 3, foo: 'bar' } },
+    { id: 2, type: 'api::homepage.homepage', data: { id: 4, bar: 'foo' } },
   ]
 ) => getMockSourceStream(data);
 
@@ -266,26 +266,42 @@ const getConfigurationMockSourceStream = (
 ) => getMockSourceStream(data);
 
 const getSchemasMockSourceStream = (
-  data: Array<Schema.Schema> = [
+  data: Array<Partial<Schema.ContentType>> = [
     {
-      info: { displayName: 'foo' },
+      info: {
+        displayName: 'foo',
+        singularName: 'foo',
+        pluralName: 'foos',
+      },
       modelType: 'contentType',
       attributes: { foo: { type: 'string' } },
     },
     {
-      info: { displayName: 'bar' },
+      info: {
+        displayName: 'bar',
+        singularName: 'bar',
+        pluralName: 'bars',
+      },
       modelType: 'contentType',
       attributes: { bar: { type: 'integer' } },
     },
     {
-      info: { displayName: 'Homepage' },
+      info: {
+        displayName: 'Homepage',
+        singularName: 'homepage',
+        pluralName: 'homepages',
+      },
       modelType: 'contentType',
       attributes: {
         action: { type: 'string' },
       },
     },
     {
-      info: { displayName: 'Permission' },
+      info: {
+        displayName: 'Permission',
+        singularName: 'permission',
+        pluralName: 'permissions',
+      },
       modelType: 'contentType',
       attributes: {
         action: { type: 'string' },
@@ -294,7 +310,7 @@ const getSchemasMockSourceStream = (
   ]
 ) => getMockSourceStream(data);
 
-const getMockDestinationStream = (listener?) => {
+const getMockDestinationStream = (listener?: (...args: any[]) => any) => {
   const stream = new Writable({
     objectMode: true,
     write(chunk, encoding, callback) {
@@ -321,7 +337,7 @@ const createSource = (streamData?: {
   entities?: Entity[];
   links?: ILink[];
   configuration?: IConfiguration[];
-  schemas?: Schema.Schema[];
+  schemas?: Schema.ContentType[];
 }): ISourceProvider => {
   return {
     type: 'source',
