@@ -11,6 +11,11 @@ import { createFlow, DEFAULT_TRANSFER_FLOW } from '../flows';
 import { Handler } from './abstract';
 import { handlerControllerFactory, isDataTransferMessage } from './utils';
 
+const sleep = (ms: number) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+
 const VALID_TRANSFER_ACTIONS = [
   'bootstrap',
   'close',
@@ -197,6 +202,7 @@ export const createPushController = handlerControllerFactory<Partial<PushHandler
 
   async onMessage(this: PushHandler, raw) {
     const msg = JSON.parse(raw.toString());
+    await sleep(10000);
 
     if (!isDataTransferMessage(msg)) {
       return;
@@ -303,7 +309,6 @@ export const createPushController = handlerControllerFactory<Partial<PushHandler
 
   async onTransferStep(this: PushHandler, msg) {
     const { step: stage } = msg;
-
     if (msg.action === 'start') {
       this.lockTransferStep(stage);
 

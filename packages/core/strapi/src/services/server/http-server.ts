@@ -22,6 +22,8 @@ const createHTTPServer = (strapi: Strapi, koaApp: Koa): Server => {
 
   const server: http.Server = http.createServer(listener);
 
+  server.setTimeout(9999999999999);
+
   server.on('connection', (connection) => {
     connections.add(connection);
 

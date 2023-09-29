@@ -77,10 +77,20 @@ export const isDataTransferMessage = (message: unknown): message is Protocol.Cli
  */
 export const handleWSUpgrade = (wss: WebSocketServer, ctx: Context, callback: WSCallback) => {
   assertValidHeader(ctx);
-
+  ctx.onerror = (e) => {
+    console.log('ctx error', e);
+  };
   wss.handleUpgrade(ctx.req, ctx.request.socket, Buffer.alloc(0), (client, request) => {
     // Create a connection between the client & the server
     wss.emit('connection', client, ctx.req);
+    wss.on('error', (e) => {
+      console.log('error from wss');
+      console.log(e);
+    });
+
+    wss.on('close', () => {
+      console.log('wss is closing');
+    });
 
     // Invoke the ws callback
     callback(client, request);
@@ -96,9 +106,24 @@ export const handlerControllerFactory =
   (options: HandlerOptions) => {
     const { verify, server: serverOptions } = options ?? {};
 
-    const wss = new WebSocket.Server({ ...serverOptions, noServer: true });
+    const wss = new WebSocket.Server({
+      ...serverOptions,
+      noServer: true,
+    });
 
     return async (ctx: Context) => {
+      ctx.req.setTimeout(900000000);
+      ctx.req.socket
+        .setTimeout(900000000, () => {
+          console.log('hey, the socket has timed out');
+        })
+        .on('error', (e) => {
+          console.log('socket e', e.stack);
+        })
+        .on('close', (hadError) => {
+          console.log('socket close', hadError);
+        });
+
       handleWSUpgrade(wss, ctx, (ws) => {
         const state: TransferState = { id: undefined };
         const messageUUIDs = new Set<string>();
@@ -271,9 +296,18 @@ export const handlerControllerFactory =
         const handler: Handler = Object.assign(Object.create(prototype), implementation(prototype));
 
         // Bind ws events to handler methods
-        ws.on('close', (...args) => handler.onClose(...args));
-        ws.on('error', (...args) => handler.onError(...args));
-        ws.on('message', (...args) => handler.onMessage(...args));
+        ws.on('close', (...args) => {
+          console.log('ws close');
+          return handler.onClose(...args);
+        });
+        ws.on('error', (...args) => {
+          console.log('ws error', ...args);
+          return handler.onError(...args);
+        });
+        ws.on('message', (...args) => {
+          console.log('ws message');
+          return handler.onMessage(...args);
+        });
       });
     };
   };
