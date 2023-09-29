@@ -1,0 +1,54 @@
+{
+  "name": "@strapi/upgrade",
+  "version": "4.13.6",
+  "description": "Strapi upgrade tool",
+  "keywords": [
+    "strapi",
+    "upgrade"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Strapi Solutions SAS",
+    "email": "hi@strapi.io",
+    "url": "https://strapi.io"
+  },
+  "maintainers": [
+    {
+      "name": "Strapi Solutions SAS",
+      "email": "hi@strapi.io",
+      "url": "https://strapi.io"
+    }
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:ts": "tsc",
+    "clean": "rimraf ./dist",
+    "prepublishOnly": "yarn clean && yarn build",
+    "test:unit": "run -T jest",
+    "test:unit:watch": "run -T jest --watch",
+    "watch": "tsc -w --preserveWatchOutput",
+    "lint": "run -T eslint ."
+  },
+  "files": [
+    "./dist"
+  ],
+  "devDependencies": {
+    "@tsconfig/node16": "1.0.3",
+    "@types/jest": "29.5.2",
+    "@types/jscodeshift": "0.11.6",
+    "typescript": "5.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "8.3.0",
+    "execa": "^5.1.1",
+    "jscodeshift": "0.15.0"
+  },
+  "bin": {
+    "strapi-upgrade": "./dist/bin/cli.js"
+  }
+}
