@@ -8018,6 +8018,32 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@strapi/plugin-releases@4.14.3, @strapi/plugin-releases@workspace:packages/plugins/releases":
+  version: 0.0.0-use.local
+  resolution: "@strapi/plugin-releases@workspace:packages/plugins/releases"
+  dependencies:
+    "@strapi/design-system": 1.12.0
+    "@strapi/helper-plugin": 4.14.3
+    "@strapi/icons": 1.12.0
+    "@strapi/strapi": 4.14.3
+    "@testing-library/react": 14.0.0
+    "@testing-library/user-event": 14.4.3
+    "@types/styled-components": 5.1.26
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-intl: 6.4.1
+    react-router-dom: 5.3.4
+    styled-components: 5.3.3
+    typescript: 5.2.2
+  peerDependencies:
+    "@strapi/strapi": ^4.4.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    react-router-dom: 5.3.4
+    styled-components: 5.3.3
+  languageName: unknown
+  linkType: soft
+
 "@strapi/plugin-sentry@4.14.3, @strapi/plugin-sentry@workspace:packages/plugins/sentry":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-sentry@workspace:packages/plugins/sentry"
@@ -17863,6 +17889,7 @@ __metadata:
     "@strapi/plugin-documentation": 4.14.3
     "@strapi/plugin-graphql": 4.14.3
     "@strapi/plugin-i18n": 4.14.3
+    "@strapi/plugin-releases": 4.14.3
     "@strapi/plugin-sentry": 4.14.3
     "@strapi/plugin-users-permissions": 4.14.3
     "@strapi/provider-email-mailgun": 4.14.3
