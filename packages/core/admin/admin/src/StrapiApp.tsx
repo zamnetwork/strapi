@@ -1,16 +1,18 @@
-import { darkTheme, lightTheme } from '@strapi/design-system';
+import { darkTheme, lightTheme, StrapiTheme } from '@strapi/design-system';
+import { MenuItem, StrapiAppSettingLink } from '@strapi/helper-plugin';
 import invariant from 'invariant';
 import isFunction from 'lodash/isFunction';
 import merge from 'lodash/merge';
 import pick from 'lodash/pick';
-import { Helmet } from 'react-helmet';
-import { BrowserRouter } from 'react-router-dom';
+import  { Middleware } from 'redux';
 
 import Logo from './assets/images/logo-strapi-2022.svg';
 import Providers from './components/Providers';
 import { HOOKS, LOCAL_STORAGE_KEY, INJECTION_ZONES, LANGUAGE_MAP } from './constants';
 import CustomFields from './core/apis/CustomFields';
-import Plugin from './core/apis/Plugin';
+import { Plugin } from './core/apis/Plugin';
+import { Field } from './core/apis/Fields';
+import { Component } from './core/apis/Components';
 import { configureStore } from './core/store/configureStore';
 import { basename } from './core/utils/basename';
 import { createHook } from './core/utils/createHook';
@@ -24,8 +26,68 @@ const {
   MUTATE_SINGLE_TYPES_LINKS,
 } = HOOKS;
 
+type Plugin = ({
+  addSettingsLink: (sectionId: string, link: StrapiAppSettingLink) => void;
+  addSettingsLinks: (sectionId: string, links: StrapiAppSettingLink) => void;
+  getPlugin: () => void;
+  injectContentManagerComponent: () => void;
+  injectAdminComponent: () => void;
+  registerHook: () => void;
+}) => void;
+
+type Plugins = {
+  'content-type-builder': Plugin;
+  upload: Plugin;
+  i18n: Plugin;
+  'users-permissions': Plugin;
+};
+
+type AdminConfig = { config: any; bootstrap: () => void };
+
 class StrapiApp {
-  constructor({ adminConfig, appPlugins, library, middlewares, reducers }) {
+  admin: {
+    injectionZones: typeof INJECTION_ZONES;
+  };
+  appPlugins: Plugins;
+  configurations: {
+    authLogo: string;
+    head: {
+      favicon: string;
+    };
+    locales: string[];
+    menuLogo: string;
+    notifications: { releases: boolean };
+    themes: { light: StrapiTheme; dark: StrapiTheme };
+    translations: Record<string, string>;
+    tutorials: boolean;
+  };
+  customConfigurations: AdminConfig['config'];
+  customBootstrapConfiguration: AdminConfig['bootstrap'];
+  hooksDict: Record<string, ReturnType<typeof createHook>>;
+  library: {
+    components: any;
+    fields: any;
+  };
+  menu: MenuItem[];
+  middlewares: {
+    add(middleware: Middleware): void;
+  };
+  plugins: Record<string, Plugin>;
+  settings: {
+    global: StrapiAppSettingLink;
+  };
+  translations: Record<string, string>;
+
+  constructor({
+    adminConfig,
+    appPlugins,
+    library,
+    middlewares,
+    reducers,
+  }: {
+    adminConfig: AdminConfig;
+    appPlugins: Plugins;
+  }) {
     this.customConfigurations = adminConfig.config;
     this.customBootstrapConfiguration = adminConfig.bootstrap;
     this.configurations = {
@@ -63,7 +125,7 @@ class StrapiApp {
     };
   }
 
-  addComponents = (components) => {
+  addComponents = (components: Component | Component[]) => {
     if (Array.isArray(components)) {
       components.map((compo) => this.library.components.add(compo));
     } else {
@@ -71,7 +133,7 @@ class StrapiApp {
     }
   };
 
-  addCorePluginMenuLink = (link) => {
+  addCorePluginMenuLink = (link: MenuItem) => {
     const stringifiedLink = JSON.stringify(link);
 
     invariant(link.to, `link.to should be defined for ${stringifiedLink}`);
@@ -91,7 +153,7 @@ class StrapiApp {
     this.menu.push(link);
   };
 
-  addFields = (fields) => {
+  addFields = (fields: Field | Field[]) => {
     if (Array.isArray(fields)) {
       fields.map((field) => this.library.fields.add(field));
     } else {
@@ -99,7 +161,7 @@ class StrapiApp {
     }
   };
 
-  addMenuLink = (link) => {
+  addMenuLink = (link: MenuItem) => {
     const stringifiedLink = JSON.stringify(link);
 
     invariant(link.to, `link.to should be defined for ${stringifiedLink}`);
@@ -123,7 +185,7 @@ class StrapiApp {
     this.menu.push(link);
   };
 
-  addMiddlewares = (middlewares) => {
+  addMiddlewares = (middlewares: Middleware[]) => {
     middlewares.forEach((middleware) => {
       this.middlewares.add(middleware);
     });
@@ -135,7 +197,7 @@ class StrapiApp {
     });
   };
 
-  addSettingsLink = (sectionId, link) => {
+  addSettingsLink = (sectionId: string, link: StrapiAppSettingLink) => {
     invariant(this.settings[sectionId], 'The section does not exist');
 
     const stringifiedLink = JSON.stringify(link);
@@ -154,7 +216,7 @@ class StrapiApp {
     this.settings[sectionId].links.push(link);
   };
 
-  addSettingsLinks = (sectionId, links) => {
+  addSettingsLinks = (sectionId: string, links: StrapiAppSettingLink[]) => {
     invariant(this.settings[sectionId], 'The section does not exist');
     invariant(Array.isArray(links), 'TypeError expected links to be an array');
 
@@ -251,11 +313,11 @@ class StrapiApp {
     }
   };
 
-  createHook = (name) => {
+  createHook = (name: string) => {
     this.hooksDict[name] = createHook();
   };
 
-  createSettingSection = (section, links) => {
+  createSettingSection = (section: { id: string; intlLabel: { id: string; defaultMessage: string; } }, links: StrapiAppSettingLink[]) => {
     invariant(section.id, 'section.id should be defined');
     invariant(
       section.intlLabel?.id && section.intlLabel?.defaultMessage,
@@ -288,7 +350,7 @@ class StrapiApp {
     }
   };
 
-  getPlugin = (pluginId) => {
+  getPlugin = (pluginI: string) => {
     return this.plugins[pluginId];
   };
 
@@ -308,7 +370,7 @@ class StrapiApp {
     this.admin.injectionZones.contentManager[containerName][blockName].push(component);
   };
 
-  injectAdminComponent = (containerName, blockName, component) => {
+  injectAdminComponent = (containerName: string, blockName: string, component) => {
     invariant(
       this.admin.injectionZones.admin[containerName]?.[blockName],
       `The ${containerName} ${blockName} zone is not defined in the admin`
@@ -395,7 +457,7 @@ class StrapiApp {
     return Promise.resolve();
   }
 
-  registerHook = (name, fn) => {
+  registerHook = (name: string, fn: () => void) => {
     invariant(
       this.hooksDict[name],
       `The hook ${name} is not defined. You are trying to register a hook that does not exist in the application.`
@@ -403,22 +465,29 @@ class StrapiApp {
     this.hooksDict[name].register(fn);
   };
 
-  registerPlugin = (pluginConf) => {
+  registerPlugin = (pluginConf: {
+    apis: Record<string, unknown>;
+    initializer: ({ setPlugin }: { setPlugin: (pluginId: string) => void }) => null;
+    injectionZones: Record<string, unknown>;
+    isReady: boolean;
+    name: string;
+    id: string;
+  }) => {
     const plugin = Plugin(pluginConf);
 
     this.plugins[plugin.pluginId] = plugin;
   };
 
-  runHookSeries = (name, asynchronous = false) =>
+  runHookSeries = (name: string, asynchronous?: boolean = false) =>
     asynchronous ? this.hooksDict[name].runSeriesAsync() : this.hooksDict[name].runSeries();
 
-  runHookWaterfall = (name, initialValue, asynchronous = false, store) => {
+  runHookWaterfall = (name: string, initialValue: unknown, asynchronous?: boolean = false, store) => {
     return asynchronous
       ? this.hooksDict[name].runWaterfallAsync(initialValue, store)
       : this.hooksDict[name].runWaterfall(initialValue, store);
   };
 
-  runHookParallel = (name) => this.hooksDict[name].runParallel();
+  runHookParallel = (name: string) => this.hooksDict[name].runParallel();
 
   render() {
     const store = this.createStore();

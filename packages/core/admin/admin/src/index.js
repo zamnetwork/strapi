@@ -2,7 +2,10 @@ import { getFetchClient } from '@strapi/helper-plugin';
 import { createRoot } from 'react-dom/client';
 
 import appCustomisations from './app';
-import { Components, Fields, Middlewares, Reducers } from './core/apis';
+import { Components } from './core/apis/Components';
+import { Fields } from './core/apis/Fields';
+import { Middlewares } from './core/apis/Middlewares';
+import { Reducers } from './core/apis/Reducers';
 // eslint-disable-next-line import/extensions
 import plugins from './plugins';
 import appReducers from './reducers';

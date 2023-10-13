@@ -1,3 +1,5 @@
+/* eslint-disable check-file/filename-naming-convention */
+
 import invariant from 'invariant';
 
 const ALLOWED_TYPES = [

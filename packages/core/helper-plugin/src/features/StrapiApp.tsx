@@ -6,7 +6,7 @@ import type { domain } from '@strapi/permissions';
 
 type Permission = domain.permission.Permission;
 
-interface MenuItem {
+export interface MenuItem {
   to: string;
   icon: React.ComponentType;
   intlLabel: TranslationMessage;
@@ -32,12 +32,12 @@ interface Plugin {
   pluginId: string;
 }
 
-interface StrapiAppSettingLink {
+export interface StrapiAppSettingLink {
   id: string;
   to: string;
   intlLabel: TranslationMessage;
   Component: React.ComponentType;
-  permissions: Permission[];
+  permissions?: Permission[];
 }
 
 interface StrapiAppSetting {
