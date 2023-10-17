@@ -9,8 +9,8 @@
     "name": "Country"
   },
   "options": {
-    "draftAndPublish": false,
-    "comment": ""
+    "reviewWorkflows": false,
+    "draftAndPublish": true
   },
   "pluginOptions": {
     "i18n": {
