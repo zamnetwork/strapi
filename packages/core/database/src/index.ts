@@ -48,12 +48,6 @@ class Database {
 
   static transformContentTypes = transformContentTypes;
 
-  static async init(config: DatabaseConfig) {
-    const db = new Database(config);
-    await validateDatabase(db);
-    return db;
-  }
-
   constructor(config: DatabaseConfig) {
     this.metadata = createMetadata(config.models);
 
@@ -65,7 +59,9 @@ class Database {
         ...(config.settings ?? {}),
       },
     };
+  }
 
+  async bootstrap() {
     this.dialect = getDialect(this);
     this.dialect.configure();
 
@@ -165,4 +161,11 @@ class Database {
   }
 }
 
-export { Database, errors };
+const createDatabase = async (config: DatabaseConfig) => {
+  const db = new Database(config);
+  await db.bootstrap();
+  await validateDatabase(db);
+  return db;
+};
+
+export { createDatabase, Database, errors };

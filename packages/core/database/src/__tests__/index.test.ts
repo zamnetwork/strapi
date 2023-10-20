@@ -1,4 +1,4 @@
-import { Database, DatabaseConfig } from '../index';
+import { createDatabase, DatabaseConfig } from '../index';
 
 jest.mock('../connection', () => ({
   createConnection: jest.fn(() => {
@@ -49,25 +49,25 @@ const config: DatabaseConfig = {
 describe('Database', () => {
   describe('constructor', () => {
     it('it should intialize if config is provided', async () => {
-      expect(() => Database.init(config)).toBeDefined();
+      expect(() => createDatabase(config)).toBeDefined();
     });
   });
 
   describe('Transaction', () => {
     it('transaction should be defined', async () => {
-      const db = await Database.init(config);
+      const db = await createDatabase(config);
       expect(db.transaction).toBeDefined();
     });
 
     it('should return value if transaction is complete', async () => {
-      const db = await Database.init(config);
+      const db = await createDatabase(config);
       const result = await db.transaction(async () => 'test');
       expect(result).toBe('test');
       expect((db.connection as any).commit).toHaveBeenCalledTimes(1);
     });
 
     it('rollback is called incase of error', async () => {
-      const db = await Database.init(config);
+      const db = await createDatabase(config);
       try {
         await db.transaction(async () => {
           throw new Error('test');
@@ -79,7 +79,7 @@ describe('Database', () => {
     });
 
     it('should throw error', async () => {
-      const db = await Database.init(config);
+      const db = await createDatabase(config);
 
       expect(async () => {
         await db.transaction(async () => {

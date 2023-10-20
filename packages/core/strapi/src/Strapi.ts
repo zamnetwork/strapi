@@ -5,7 +5,7 @@ import path from 'path';
 import _ from 'lodash';
 import { isFunction } from 'lodash/fp';
 import { Logger, createLogger } from '@strapi/logger';
-import { Database } from '@strapi/database';
+import { createDatabase, Database } from '@strapi/database';
 import { hooks } from '@strapi/utils';
 import type {
   Strapi as StrapiI,
@@ -545,7 +545,7 @@ class Strapi implements StrapiI {
       ...Object.values(this.components),
     ];
 
-    this.db = await Database.init({
+    this.db = await createDatabase({
       ...this.config.get('database'),
       models: Database.transformContentTypes(contentTypes),
     });
