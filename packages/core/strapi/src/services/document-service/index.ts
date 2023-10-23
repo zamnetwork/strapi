@@ -47,6 +47,14 @@ const createDocumentService = ({
 }): DocumentService.DocumentService => ({
   uploadFiles,
 
+  // Add state to documentService so lifecycle hooks have additional context
+  with(context): DocumentService.DocumentServiceWithContext {
+    return {
+      ...this,
+      context,
+    };
+  },
+
   async findMany(uid, params) {
     const { kind } = strapi.getModel(uid);
 

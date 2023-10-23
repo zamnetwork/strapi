@@ -10,7 +10,20 @@ export type UploadFile = (
   files: Record<string, unknown>
 ) => Promise<void>;
 
+export type DocumentServiceContext = {
+  auth?: any;
+  locales?: string[];
+  defaultParams?: unknown;
+  [key: string]: unknown;
+};
+
+export type DocumentServiceWithContext = DocumentService & {
+  context?: DocumentServiceContext;
+};
+
 export interface DocumentService {
+  with: (options: DocumentServiceContext) => DocumentServiceWithContext;
+
   uploadFiles: UploadFile;
 
   // TODO: Split in 2 different signatures for both single types & collection types
