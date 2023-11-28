@@ -38,7 +38,7 @@ Dispatches a new event into the hub. It returns a promise that resolves when all
 type Emit = (name: string, ...args: any[]) => Promise<void>;
 
 // Usage
-strapi.eventHub.emit('some.event', { meta: 'data' });
+strapi.get('eventHub').emit('some.event', { meta: 'data' });
 ```
 
 ### Managing subscribers
@@ -54,7 +54,7 @@ type UnsubscribeCallback = () => void;
 type Subscribe = (subscriber: Subscriber) => UnsubscribeCallback;
 
 // Add a subscriber
-const unsubcribe = strapi.eventHub.subscribe((name: string, ...args: any[]) => {
+const unsubcribe = strapi.get('eventHub').subscribe((name: string, ...args: any[]) => {
   // Write your subscriber logic here
 });
 
@@ -73,10 +73,10 @@ type Unsubscribe = (subscriber: Subscriber) => void;
 
 // After a subscriber has been added
 const subscriber: Subscriber = (name, ...args) => {};
-strapi.eventHub.subscribe(subscriber);
+strapi.get('eventHub').subscribe(subscriber);
 
 // Use its reference to remove it
-strapi.eventHub.unsubcribe(subscriber);
+strapi.get('eventHub').unsubcribe(subscriber);
 ```
 
 ### Listening to a single event
@@ -94,7 +94,7 @@ type RemoveListenerCallback = () => void;
 type On = (eventName: string, listener: Listener) => RemoveListenerCallback;
 
 // Add a listener
-const removeListener = strapi.eventHub.on('some.event', () => {
+const removeListener = strapi.get('eventHub').on('some.event', () => {
   // Write your listener logic here
 });
 
@@ -113,10 +113,10 @@ type Off = (listener: Listener) => void;
 
 // After a listener has been added
 const listener: Listener = (...args) => {};
-strapi.eventHub.on('some.event', listener);
+strapi.get('eventHub').on('some.event', listener);
 
 // Use its reference to remove it
-strapi.eventHub.off('some.event', listener);
+strapi.get('eventHub').off('some.event', listener);
 ```
 
 #### `once`
@@ -130,7 +130,7 @@ type RemoveListenerCallback = () => void;
 type Once = (eventName: string, listener: Listener) => RemoveListenerCallback;
 
 // Add a single-use listener
-const removeListener = strapi.eventHub.once('some.event', () => {
+const removeListener = strapi.get('eventHub').once('some.event', () => {
   // Write your listener logic here
 });
 

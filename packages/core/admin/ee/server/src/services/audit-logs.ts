@@ -135,7 +135,7 @@ const createAuditLogsService = (strapi: LoadedStrapi) => {
       // Handle license being enabled
       if (!state.eeEnableUnsubscribe) {
         // @ts-expect-error- update event hub to receive callback argument
-        state.eeEnableUnsubscribe = strapi.eventHub.on('ee.enable', () => {
+        state.eeEnableUnsubscribe = strapi.get('eventHub').on('ee.enable', () => {
           // Recreate the service to use the new license info
           this.destroy();
           this.register();
@@ -145,7 +145,7 @@ const createAuditLogsService = (strapi: LoadedStrapi) => {
       // Handle license being updated
       if (!state.eeUpdateUnsubscribe) {
         // @ts-expect-error- update event hub to receive callback argument
-        state.eeUpdateUnsubscribe = strapi.eventHub.on('ee.update', () => {
+        state.eeUpdateUnsubscribe = strapi.get('eventHub').on('ee.update', () => {
           // Recreate the service to use the new license info
           this.destroy();
           this.register();
@@ -154,7 +154,7 @@ const createAuditLogsService = (strapi: LoadedStrapi) => {
 
       // Handle license being disabled
       // @ts-expect-error- update event hub to receive callback argument
-      state.eeDisableUnsubscribe = strapi.eventHub.on('ee.disable', () => {
+      state.eeDisableUnsubscribe = strapi.get('eventHub').on('ee.disable', () => {
         // Turn off service when the license gets disabled
         // Only ee.enable and ee.update listeners remain active to recreate the service
         this.destroy();
@@ -169,7 +169,7 @@ const createAuditLogsService = (strapi: LoadedStrapi) => {
       }
 
       // Start saving events
-      state.eventHubUnsubscribe = strapi.eventHub.subscribe(handleEvent.bind(this));
+      state.eventHubUnsubscribe = strapi.get('eventHub').subscribe(handleEvent.bind(this));
 
       // Manage audit logs auto deletion
       const retentionDays = getRetentionDays(strapi);

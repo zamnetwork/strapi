@@ -6,7 +6,6 @@ import type { Database } from '@strapi/database';
 import type { Logger } from '@strapi/logger';
 
 import type { Server } from './modules/server';
-import type { EventHub } from './modules/event-hub';
 import type { CronService } from './modules/cron';
 import type { WebhookRunner } from './modules/webhook-runner';
 import type { WebhookStore, Webhook } from './modules/webhook-store';
@@ -32,7 +31,6 @@ export type * from './types';
 export {
   Container,
   Server,
-  EventHub,
   CronService,
   Webhook,
   WebhookRunner,
@@ -85,7 +83,6 @@ export interface ConfigProvider {
 export interface Strapi extends Container {
   server: Server;
   log: Logger;
-  eventHub: EventHub;
   startupLogger: StartupLogger;
   cron: CronService;
   webhookRunner?: WebhookRunner;

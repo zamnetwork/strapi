@@ -18,7 +18,7 @@ export const authenticate: Common.MiddlewareHandler = async (ctx, next) => {
         strapi.log.error(error);
       }
 
-      strapi.eventHub.emit('admin.auth.error', {
+      strapi.get('eventHub').emit('admin.auth.error', {
         error: error || defaultConnectionError(),
         provider,
       });
@@ -38,7 +38,7 @@ const existingUserScenario: Common.MiddlewareHandler =
     const redirectUrls = utils.getPrefixedRedirectUrls();
 
     if (!user.isActive) {
-      strapi.eventHub.emit('admin.auth.error', {
+      strapi.get('eventHub').emit('admin.auth.error', {
         error: new Error(`Deactivated user tried to login (${user.id})`),
         provider,
       });
@@ -60,7 +60,7 @@ const nonExistingUserScenario: Common.MiddlewareHandler =
     const isMissingRegisterFields = !username && (!firstname || !lastname);
 
     if (!providers.autoRegister || !providers.defaultRole || isMissingRegisterFields) {
-      strapi.eventHub.emit('admin.auth.error', { error: defaultConnectionError(), provider });
+      strapi.get('eventHub').emit('admin.auth.error', { error: defaultConnectionError(), provider });
       return ctx.redirect(redirectUrls.error);
     }
 
@@ -68,7 +68,7 @@ const nonExistingUserScenario: Common.MiddlewareHandler =
 
     // If the default role has been misconfigured, redirect with an error
     if (!defaultRole) {
-      strapi.eventHub.emit('admin.auth.error', { error: defaultConnectionError(), provider });
+      strapi.get('eventHub').emit('admin.auth.error', { error: defaultConnectionError(), provider });
       return ctx.redirect(redirectUrls.error);
     }
 
@@ -83,7 +83,7 @@ const nonExistingUserScenario: Common.MiddlewareHandler =
       registrationToken: null,
     });
 
-    strapi.eventHub.emit('admin.auth.autoRegistration', {
+    strapi.get('eventHub').emit('admin.auth.autoRegistration', {
       user: ctx.state.user,
       provider,
     });
@@ -106,7 +106,7 @@ export const redirectWithAuth: Common.MiddlewareHandler = (ctx) => {
   const cookiesOptions = { httpOnly: false, secure: isProduction, overwrite: true, domain };
 
   const sanitizedUser = getService('user').sanitizeUser(user);
-  strapi.eventHub.emit('admin.auth.success', { user: sanitizedUser, provider });
+  strapi.get('eventHub').emit('admin.auth.success', { user: sanitizedUser, provider });
 
   ctx.cookies.set('jwtToken', jwt, cookiesOptions);
   ctx.redirect(redirectUrls.success);

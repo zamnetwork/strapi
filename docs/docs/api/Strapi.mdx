@@ -104,24 +104,24 @@ Strapi server object.
 
 Wrapper around [FS NodeJS module](https://nodejs.org/docs/latest-v18.x/api/fs.html).
 
-### `strapi.eventHub`
+### `strapi.get('eventHub')`
 
 - [<Type>EventHub</Type>](EventHub)
 
-The `strapi.eventHub` object is used to manipulate events within a Strapi project. It is an instance of the built-in EventEmitter class from Node.js, which provides a simple way to emit and listen for events.
+The `eventHub` is used to manipulate events within a Strapi project. It is an instance of the built-in EventEmitter class from Node.js, which provides a simple way to emit and listen for events.
 
-The `strapi.eventHub` object is created using the `createEventHub()` function in the [EventHub](EventHub) module of the Strapi core. This function returns a new instance of the EventHub class, which extends the EventEmitter class and adds some additional functionality specific to Strapi.
+The `eventHub` is created using the `createEventHub()` function in the [EventHub](EventHub) module of the Strapi core. This function returns a new instance of the EventHub class, which extends the EventEmitter class and adds some additional functionality specific to Strapi.
 
 #### Examples:
 
 ```javascript
 // Listen for a 'user.updated' event and log the data
-strapi.eventHub.on('user.updated', (data) => {
+strapi.get('eventHub').on('user.updated', (data) => {
   console.log(`User ${data.id} has been updated`);
 });
 
 // Emit a 'user.created' event with some data
-strapi.eventHub.emit('user.created', { username: 'johndoe', email: 'johndoe@example.com' });
+strapi.get('eventHub').emit('user.created', { username: 'johndoe', email: 'johndoe@example.com' });
 ```
 
 In this example, we are emitting a `user.created` event with some data attached to it, and then listening for a user.updated event and logging the data. These events can be used to trigger actions within the Strapi application or to communicate with external systems.

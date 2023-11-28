@@ -61,7 +61,7 @@ describe('Content-Manager', () => {
         data: { publishedAt: expect.any(Date) },
         populate: {},
       });
-      expect(strapi.eventHub.emit).toBeCalledWith('entry.publish', {
+      expect(strapi.get('eventHub').emit).toBeCalledWith('entry.publish', {
         model: fakeModel.modelName,
         entry: {
           id: 1,
@@ -98,7 +98,7 @@ describe('Content-Manager', () => {
         populate: {},
       });
       // @ts-expect-error mocks do exist on global.strapi
-      expect(strapi.eventHub.emit.mock.calls).toEqual([
+      expect(strapi.get('eventHub').emit.mock.calls).toEqual([
         [
           'entry.publish',
           { model: fakeModel.modelName, entry: { id: 1, publishedAt: expect.any(Date) } },
@@ -134,7 +134,7 @@ describe('Content-Manager', () => {
         populate: {},
       });
       // @ts-expect-error mocks do exist on global.strapi
-      expect(strapi.eventHub.emit.mock.calls).toEqual([
+      expect(strapi.get('eventHub').emit.mock.calls).toEqual([
         [
           'entry.publish',
           { model: fakeModel.modelName, entry: { id: 2, publishedAt: expect.any(Date) } },
@@ -188,7 +188,7 @@ describe('Content-Manager', () => {
         data: { publishedAt: null },
         populate: {},
       });
-      expect(strapi.eventHub.emit).toBeCalledWith('entry.unpublish', {
+      expect(strapi.get('eventHub').emit).toBeCalledWith('entry.unpublish', {
         model: fakeModel.modelName,
         entry: {
           id: 1,
@@ -225,7 +225,7 @@ describe('Content-Manager', () => {
         populate: {},
       });
       // @ts-expect-error mocks do exist on global.strapi
-      expect(strapi.eventHub.emit.mock.calls).toEqual([
+      expect(strapi.get('eventHub').emit.mock.calls).toEqual([
         ['entry.unpublish', { model: fakeModel.modelName, entry: { id: 1, publishedAt: null } }],
         ['entry.unpublish', { model: fakeModel.modelName, entry: { id: 2, publishedAt: null } }],
       ]);
@@ -256,7 +256,7 @@ describe('Content-Manager', () => {
         populate: {},
       });
       // @ts-expect-error mocks do exist on global.strapi
-      expect(strapi.eventHub.emit.mock.calls).toEqual([
+      expect(strapi.get('eventHub').emit.mock.calls).toEqual([
         ['entry.unpublish', { model: fakeModel.modelName, entry: { id: 1, publishedAt: null } }],
       ]);
     });

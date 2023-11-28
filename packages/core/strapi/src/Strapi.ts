@@ -12,7 +12,6 @@ import type {
   Server,
   EntityService,
   Documents,
-  EventHub,
   StartupLogger,
   CronService,
   WebhookStore,
@@ -132,8 +131,6 @@ class Strapi extends Container implements StrapiI {
 
   log: Logger;
 
-  eventHub: EventHub;
-
   startupLogger: StartupLogger;
 
   cron: CronService;
@@ -199,7 +196,8 @@ class Strapi extends Container implements StrapiI {
       .add('validators', registries.validators())
       .add('content-api', createContentAPI(this))
       .add('auth', createAuth())
-      .add('fs', createStrapiFs(this));
+      .add('fs', createStrapiFs(this))
+      .add('eventHub', createEventHub());
 
     // Create a mapping of every useful directory (for the app, dist and static directories)
     this.dirs = utils.getDirs(rootDirs, { strapi: this });
@@ -212,7 +210,6 @@ class Strapi extends Container implements StrapiI {
     this.server = createServer(this);
 
     // Strapi utils instantiation
-    this.eventHub = createEventHub();
     this.startupLogger = createStartupLogger(this);
     this.log = createLogger(this.config.get('logger', { level: 'info' }));
     this.cron = createCronService();
@@ -343,7 +340,7 @@ class Strapi extends Container implements StrapiI {
     await this.server.destroy();
     await this.runLifecyclesFunctions(LIFECYCLES.DESTROY);
 
-    this.eventHub.destroy();
+    this.get('eventHub').destroy();
 
     await this.db?.destroy();
 
@@ -458,7 +455,7 @@ class Strapi extends Container implements StrapiI {
 
     // init webhook runner
     this.webhookRunner = createWebhookRunner({
-      eventHub: this.eventHub,
+      eventHub: this.get('eventHub'),
       logger: this.log,
       configuration: this.config.get('server.webhooks', {}),
       fetch: this.fetch,
@@ -495,7 +492,7 @@ class Strapi extends Container implements StrapiI {
     this.entityService = createEntityService({
       strapi: this,
       db: this.db,
-      eventHub: this.eventHub,
+      eventHub: this.get('eventHub'),
       entityValidator: this.entityValidator,
     });
 

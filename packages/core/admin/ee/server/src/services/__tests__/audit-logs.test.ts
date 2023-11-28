@@ -101,19 +101,19 @@ describe('Audit logs service', () => {
 
       // Should subscribe to events when license gets enabled
       jest.mocked(strapi.ee.features.isEnabled).mockImplementationOnce(() => true);
-      await strapi.eventHub.emit('ee.enable');
+      await strapi.get('eventHub').emit('ee.enable');
       expect(mockSubscribe).toHaveBeenCalled();
 
       // Should unsubscribe to events when license gets disabled
       mockSubscribe.mockClear();
       jest.mocked(strapi.ee.features.isEnabled).mockImplementationOnce(() => false);
-      await strapi.eventHub.emit('ee.disable');
+      await strapi.get('eventHub').emit('ee.disable');
       expect(mockSubscribe).not.toHaveBeenCalled();
 
       // Should recreate the service when license updates
       const destroySpy = jest.spyOn(auditLogsService, 'destroy');
       const registerSpy = jest.spyOn(auditLogsService, 'register');
-      await strapi.eventHub.emit('ee.update');
+      await strapi.get('eventHub').emit('ee.update');
       expect(destroySpy).toHaveBeenCalled();
       expect(registerSpy).toHaveBeenCalled();
     });
@@ -219,7 +219,7 @@ describe('Audit logs service', () => {
 
       jest.useFakeTimers().setSystemTime(new Date('1970-01-01T00:00:00.000Z'));
 
-      await strapi.eventHub.emit('entry.create', { meta: 'test' });
+      await strapi.get('eventHub').emit('entry.create', { meta: 'test' });
 
       // Sends the processed event to a provider
       expect(mockSaveEvent).toHaveBeenCalledTimes(1);
@@ -239,7 +239,7 @@ describe('Audit logs service', () => {
 
       const eventName = 'unknown';
       const eventPayload = { meta: 'test' };
-      await strapi.eventHub.emit(eventName, eventPayload);
+      await strapi.get('eventHub').emit(eventName, eventPayload);
 
       expect(mockSaveEvent).not.toHaveBeenCalled();
     });
@@ -248,8 +248,8 @@ describe('Audit logs service', () => {
       const auditLogsService = createAuditLogsService(strapi);
       auditLogsService.register();
 
-      await strapi.eventHub.emit('entry.create', { uid: 'plugin::upload.file' });
-      await strapi.eventHub.emit('entry.update', { uid: 'plugin::upload.folder' });
+      await strapi.get('eventHub').emit('entry.create', { uid: 'plugin::upload.file' });
+      await strapi.get('eventHub').emit('entry.update', { uid: 'plugin::upload.folder' });
 
       expect(mockSaveEvent).not.toHaveBeenCalled();
     });
@@ -259,7 +259,7 @@ describe('Audit logs service', () => {
       await auditLogsService.register();
       mockFindMany.mockResolvedValueOnce({ results: [], pagination: {} });
 
-      await strapi.eventHub.emit('entry.create', { meta: 'test' });
+      await strapi.get('eventHub').emit('entry.create', { meta: 'test' });
 
       const params = { page: 1, pageSize: 10, order: 'createdAt:DESC' };
       const result = await auditLogsService.findMany(params);
@@ -274,7 +274,7 @@ describe('Audit logs service', () => {
       await auditLogsService.register();
       mockFindOne.mockResolvedValueOnce({ id: 1, user: null });
 
-      await strapi.eventHub.emit('entry.create', { meta: 'test' });
+      await strapi.get('eventHub').emit('entry.create', { meta: 'test' });
 
       const result = await auditLogsService.findOne(1);
 
@@ -310,7 +310,7 @@ describe('Audit logs service', () => {
       const auditLogsService = createAuditLogsService(strapi);
       await auditLogsService.register();
 
-      await strapi.eventHub.emit('entry.create', { meta: 'test' });
+      await strapi.get('eventHub').emit('entry.create', { meta: 'test' });
 
       expect(mockSaveEvent).not.toHaveBeenCalled();
     });

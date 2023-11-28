@@ -25,7 +25,7 @@ const registerAuthEvents = () => {
 
   for (const [eventName, handler] of eventList) {
     // TODO - TS: ensure the handler is an EventHub.Listener
-    strapi.eventHub.on(authEventsMapper[eventName], handler as any);
+    strapi.get('eventHub').on(authEventsMapper[eventName], handler as any);
   }
 };
 

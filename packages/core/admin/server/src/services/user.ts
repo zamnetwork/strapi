@@ -57,7 +57,7 @@ const create = async (
 
   getService('metrics').sendDidInviteUser();
 
-  strapi.eventHub.emit('user.create', { user: sanitizeUser(createdUser) });
+  strapi.get('eventHub').emit('user.create', { user: sanitizeUser(createdUser) });
 
   return createdUser;
 };
@@ -103,7 +103,7 @@ const updateById = async (
       populate: ['roles'],
     });
 
-    strapi.eventHub.emit('user.update', { user: sanitizeUser(updatedUser) });
+    strapi.get('eventHub').emit('user.update', { user: sanitizeUser(updatedUser) });
 
     return updatedUser;
   }
@@ -115,7 +115,7 @@ const updateById = async (
   });
 
   if (updatedUser) {
-    strapi.eventHub.emit('user.update', { user: sanitizeUser(updatedUser) });
+    strapi.get('eventHub').emit('user.update', { user: sanitizeUser(updatedUser) });
   }
 
   return updatedUser;
@@ -267,7 +267,7 @@ const deleteById = async (id: Entity.ID): Promise<AdminUser | null> => {
     .query('admin::user')
     .delete({ where: { id }, populate: ['roles'] });
 
-  strapi.eventHub.emit('user.delete', { user: sanitizeUser(deletedUser) });
+  strapi.get('eventHub').emit('user.delete', { user: sanitizeUser(deletedUser) });
 
   return deletedUser;
 };
@@ -299,7 +299,7 @@ const deleteByIds = async (ids: (string | number)[]): Promise<AdminUser[]> => {
     deletedUsers.push(deletedUser);
   }
 
-  strapi.eventHub.emit('user.delete', {
+  strapi.get('eventHub').emit('user.delete', {
     users: deletedUsers.map((deletedUser) => sanitizeUser(deletedUser)),
   });
 

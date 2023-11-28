@@ -120,7 +120,7 @@ export const createContentType = async (
     await builder.writeFiles();
   }
 
-  strapi.eventHub.emit('content-type.create', { contentType: newContentType });
+  strapi.get('eventHub').emit('content-type.create', { contentType: newContentType });
 
   return newContentType;
 };
@@ -229,7 +229,7 @@ export const editContentType = async (
 
   await builder.writeFiles();
 
-  strapi.eventHub.emit('content-type.update', { contentType: updatedContentType });
+  strapi.get('eventHub').emit('content-type.update', { contentType: updatedContentType });
 
   return updatedContentType;
 };
@@ -276,7 +276,7 @@ export const deleteContentType = async (
     }
   }
 
-  strapi.eventHub.emit('content-type.delete', { contentType });
+  strapi.get('eventHub').emit('content-type.delete', { contentType });
 
   return contentType;
 };

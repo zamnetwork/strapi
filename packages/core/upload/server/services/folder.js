@@ -31,7 +31,7 @@ const create = async (folderData, { user } = {}) => {
 
   const folder = await strapi.entityService.create(FOLDER_MODEL_UID, { data: enrichedFolder });
 
-  strapi.eventHub.emit('media-folder.create', { folder });
+  strapi.get('eventHub').emit('media-folder.create', { folder });
 
   return folder;
 };
@@ -75,7 +75,7 @@ const deleteByIds = async (ids = []) => {
     },
   });
 
-  strapi.eventHub.emit('media-folder.delete', { folders });
+  strapi.get('eventHub').emit('media-folder.delete', { folders });
 
   return {
     folders,
@@ -195,7 +195,7 @@ const update = async (id, { name, parent }, { user }) => {
     const newFolder = setCreatorFields({ user, isEdition: true })({ name });
     const folder = await strapi.entityService.update(FOLDER_MODEL_UID, id, { data: newFolder });
 
-    strapi.eventHub.emit('media-folder.update', { folder });
+    strapi.get('eventHub').emit('media-folder.update', { folder });
     return folder;
   }
 };

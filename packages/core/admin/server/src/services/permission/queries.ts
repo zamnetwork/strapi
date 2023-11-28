@@ -35,7 +35,7 @@ export const deleteByIds = async (ids: ID[]): Promise<void> => {
     const queryResult = await strapi.query('admin::permission').delete({ where: { id } });
     result.push(queryResult);
   }
-  strapi.eventHub.emit('permission.delete', { permissions: result });
+  strapi.get('eventHub').emit('permission.delete', { permissions: result });
 };
 
 /**
@@ -50,7 +50,7 @@ export const createMany = async (permissions: CreatePermissionPayload[]): Promis
   }
 
   const permissionsToReturn = permissionDomain.toPermission(createdPermissions);
-  strapi.eventHub.emit('permission.create', { permissions: permissionsToReturn });
+  strapi.get('eventHub').emit('permission.create', { permissions: permissionsToReturn });
 
   return permissionsToReturn;
 };
@@ -66,7 +66,7 @@ const update = async (params: unknown, attributes: Partial<Permission>) => {
     .update({ where: params, data: attributes })) as Permission;
 
   const permissionToReturn = permissionDomain.toPermission(updatedPermission);
-  strapi.eventHub.emit('permission.update', { permissions: permissionToReturn });
+  strapi.get('eventHub').emit('permission.update', { permissions: permissionToReturn });
 
   return permissionToReturn;
 };

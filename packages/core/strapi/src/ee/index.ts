@@ -36,7 +36,7 @@ const disable = (message: string) => {
 
   if (shouldEmitEvent) {
     // Notify EE features that they should be disabled
-    strapi.eventHub.emit('ee.disable');
+    strapi.get('eventHub').emit('ee.disable');
   }
 };
 
@@ -48,7 +48,7 @@ const enable = () => {
 
   if (shouldEmitEvent) {
     // Notify EE features that they should be disabled
-    strapi.eventHub.emit('ee.enable');
+    strapi.get('eventHub').emit('ee.enable');
   }
 };
 
@@ -150,7 +150,7 @@ const onlineUpdate = async ({ strapi }: { strapi: Strapi }) => {
 
         // Notify EE features
         if (licenseInfoChanged && wasEnabled) {
-          strapi.eventHub.emit('ee.update');
+          strapi.get('eventHub').emit('ee.update');
         }
       } catch (error) {
         if (error instanceof Error) {

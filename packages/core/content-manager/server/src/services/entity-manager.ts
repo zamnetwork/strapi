@@ -26,7 +26,7 @@ const emitEvent = async (uid: Common.UID.ContentType, event: string, entity: Ent
   const modelDef = strapi.getModel(uid);
   const sanitizedEntity = await sanitize.sanitizers.defaultSanitizeOutput(modelDef, entity);
 
-  strapi.eventHub.emit(event, {
+  strapi.get('eventHub').emit(event, {
     model: modelDef.modelName,
     entry: sanitizedEntity,
   });

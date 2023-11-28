@@ -69,7 +69,7 @@ const decorator = (service: any) => ({
     if (updatedStage && previousStage?.id && previousStage.id !== updatedStage.id) {
       const model = strapi.getModel(uid);
 
-      strapi.eventHub.emit(WORKFLOW_UPDATE_STAGE, {
+      strapi.get('eventHub').emit(WORKFLOW_UPDATE_STAGE, {
         model: model.modelName,
         uid: model.uid,
         entity: {

@@ -66,7 +66,7 @@ module.exports = ({ strapi }) => ({
     const modelDef = strapi.getModel(FILE_MODEL_UID);
     const sanitizedData = await sanitize.sanitizers.defaultSanitizeOutput(modelDef, data);
 
-    strapi.eventHub.emit(event, { media: sanitizedData });
+    strapi.get('eventHub').emit(event, { media: sanitizedData });
   },
 
   async formatFileInfo({ filename, type, size }, fileInfo = {}, metas = {}) {

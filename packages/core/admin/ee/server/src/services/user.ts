@@ -98,7 +98,7 @@ const updateById = async (id: any, attributes: any) => {
       populate: ['roles'],
     });
 
-    strapi.eventHub.emit('user.update', { user: sanitizeUser(updatedUser) });
+    strapi.get('eventHub').emit('user.update', { user: sanitizeUser(updatedUser) });
 
     return updatedUser;
   }
@@ -112,7 +112,7 @@ const updateById = async (id: any, attributes: any) => {
   await updateEEDisabledUsersList(id, attributes);
 
   if (updatedUser) {
-    strapi.eventHub.emit('user.update', { user: sanitizeUser(updatedUser) });
+    strapi.get('eventHub').emit('user.update', { user: sanitizeUser(updatedUser) });
   }
 
   return updatedUser;
@@ -148,7 +148,7 @@ const deleteById = async (id: unknown) => {
 
   await removeFromEEDisabledUsersList(id);
 
-  strapi.eventHub.emit('user.delete', { user: sanitizeUser(deletedUser) });
+  strapi.get('eventHub').emit('user.delete', { user: sanitizeUser(deletedUser) });
 
   return deletedUser;
 };
@@ -183,7 +183,7 @@ const deleteByIds = async (ids: any) => {
 
   await removeFromEEDisabledUsersList(ids);
 
-  strapi.eventHub.emit('user.delete', {
+  strapi.get('eventHub').emit('user.delete', {
     users: deletedUsers.map((deletedUser) => sanitizeUser(deletedUser)),
   });
 

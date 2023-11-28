@@ -56,7 +56,7 @@ type Event {
 To understand how we obtain this information, we need to know how we emit an event with the Event Hub. To emit an event, we use the following function: (To see more info about the EventHub, click [here](/docs/core/strapi/event-hub)
 
 ```typescript
-strapi.eventHub.emit(name: Pick<Event, 'name'>, payload: Pick<Event, 'payload'>);
+strapi.get('eventHub').emit(name: Pick<Event, 'name'>, payload: Pick<Event, 'payload'>);
 ```
 
 First, we check the event is coming from admin requests and it's on our [default events](https://github.com/strapi/strapi/blob/main/packages/core/admin/ee/server/services/audit-logs.js#L9) list, then when creating our Audit Log, we retrieve the action and payload from this emitted event, where the first argument is the action or event name, and the second one is the payload. We obtain the user from the requestContext.
