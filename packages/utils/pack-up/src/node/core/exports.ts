@@ -310,6 +310,8 @@ const parseExports = ({ extMap, pkg }: { extMap: ExtMap; pkg: PackageJson }) => 
 
           extraExports.push(extraExport);
         }
+      } else if (typeof entry === 'string' && entry.endsWith('.js')) { 
+        // ZAM change allow exporting .js
       } else {
         errors.push('package.json: exports must be an object');
       }

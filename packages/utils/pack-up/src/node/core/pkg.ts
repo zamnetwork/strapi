@@ -117,7 +117,8 @@ const packageJsonSchema = yup.object({
               } else {
                 acc[key] = yup
                   .string()
-                  .matches(/^\.\/.*\.json$/)
+                  // ZAM change allow exporting js
+                  .matches(/^\.\/.*\.json|js$/)
                   .required();
               }
 
