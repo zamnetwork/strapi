@@ -300,7 +300,9 @@ export const createEntityManager = (db: Database): EntityManager => {
 
       // ZAM change allows ids to be 0
       let id;
-      if (res[0].id != undefined || res[0].id != null) id = res[0].id;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      if (res[0].id !== undefined || res[0].id !== null) id = res[0].id;
       else id = res[0];
 
       const trx = await strapi.db.transaction();
