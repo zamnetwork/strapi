@@ -98,6 +98,62 @@ const layout = [
     },
   ],
   [
+      {
+        intlLabel: {
+          id: 'Auth.form.displayname.label',
+          defaultMessage: 'Display Name',
+        },
+        name: 'displayname',
+        type: 'text',
+        size: {
+          col: 6,
+          xs: 12,
+        },
+      },
+    ],
+    [
+      {
+        intlLabel: {
+          id: 'Auth.form.gravatar.label',
+          defaultMessage: 'Gravatar URL',
+        },
+        name: 'gravatar',
+        type: 'text',
+        size: {
+          col: 6,
+          xs: 12,
+        },
+      },
+    ],
+    [
+      {
+        intlLabel: {
+          id: 'Auth.form.twitter.label',
+          defaultMessage: 'Twitter URL',
+        },
+        name: 'twitter',
+        type: 'text',
+        size: {
+          col: 6,
+          xs: 12,
+        },
+      },
+    ],
+    [
+      {
+        intlLabel: {
+          id: 'Auth.form.bio.label',
+          defaultMessage: 'Bio',
+        },
+        name: 'bio',
+        type: 'textarea',
+        size: {
+          col: 12,
+          xs: 24,
+        },
+      },
+    ],
+  [
     {
       intlLabel: {
         id: 'Auth.form.active.label',

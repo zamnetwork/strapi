@@ -158,8 +158,28 @@ const ProfilePage = () => {
     {
       async onSuccess(data) {
         await refetch();
-        const { email, firstname, lastname, username, preferedLanguage } = data;
-        auth.setUserInfo({ email, firstname, lastname, username, preferedLanguage });
+        const {
+          email,
+          firstname,
+          lastname,
+          username,
+          preferedLanguage,
+          bio,
+          gravatar,
+          twitter,
+          displayname,
+        } = data;
+        auth.setUserInfo({
+          email,
+          firstname,
+          lastname,
+          username,
+          preferedLanguage,
+          bio,
+          gravatar,
+          twitter,
+          displayname,
+        });
         const userDisplayName = data.username || getFullName(data.firstname ?? '', data.lastname);
         setUserDisplayName(userDisplayName);
 
@@ -236,13 +256,27 @@ const ProfilePage = () => {
   }
 
   const hasLockedRole = dataSSO?.isSSOLocked ?? false;
-  const { email, firstname, lastname, username, preferedLanguage } = data;
+  const {
+    email,
+    firstname,
+    lastname,
+    username,
+    preferedLanguage,
+    bio,
+    gravatar,
+    twitter,
+    displayname,
+  } = data;
   const initialData = {
     email,
     firstname,
     lastname,
     username,
     preferedLanguage,
+    bio,
+    gravatar,
+    twitter,
+    displayname,
     currentTheme,
     confirmPassword: '',
     password: '',
@@ -684,12 +718,25 @@ const PreferencesSection = ({
  * -----------------------------------------------------------------------------------------------*/
 
 interface UserInfoSectionProps extends Pick<GenericInputProps, 'onChange'> {
-  errors: { firstname?: string; lastname?: string; username?: string; email?: string };
+  errors: {
+    firstname?: string;
+    lastname?: string;
+    username?: string;
+    email?: string;
+    displayname?: string;
+    gravatar?: string;
+    twitter?: string;
+    bio?: string;
+  };
   values: {
     firstname?: string;
     lastname?: string;
     username?: string;
     email?: string;
+    displayname?: string;
+    gravatar?: string;
+    twitter?: string;
+    bio?: string;
   };
 }
 
@@ -763,6 +810,58 @@ const UserInfoSection = ({ errors, onChange, values }: UserInfoSectionProps) => 
               value={values.username}
               type="text"
               name="username"
+            />
+          </GridItem>
+          <GridItem s={12} col={6}>
+            <GenericInput
+              intlLabel={{
+                id: 'Auth.form.displayname.label',
+                defaultMessage: 'Display Name',
+              }}
+              error={errors.displayname}
+              onChange={onChange}
+              value={values.displayname || ''}
+              type="text"
+              name="displayname"
+            />
+          </GridItem>
+          <GridItem s={12} col={6}>
+            <GenericInput
+              intlLabel={{
+                id: 'Auth.form.gravatar.label',
+                defaultMessage: 'Gravatar Url',
+              }}
+              error={errors.gravatar}
+              onChange={onChange}
+              value={values.gravatar || ''}
+              type="text"
+              name="gravatar"
+            />
+          </GridItem>
+          <GridItem s={12} col={6}>
+            <GenericInput
+              intlLabel={{
+                id: 'Auth.form.twitter.label',
+                defaultMessage: 'Twitter Url',
+              }}
+              error={errors.twitter}
+              onChange={onChange}
+              value={values.twitter || ''}
+              type="text"
+              name="twitter"
+            />
+          </GridItem>
+          <GridItem s={12} col={6}>
+            <GenericInput
+              intlLabel={{
+                id: 'Auth.form.bio.label',
+                defaultMessage: 'Bio',
+              }}
+              error={errors.bio}
+              onChange={onChange}
+              value={values.bio || ''}
+              type="textarea"
+              name="bio"
             />
           </GridItem>
         </Grid>

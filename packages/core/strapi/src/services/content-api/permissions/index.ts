@@ -133,6 +133,25 @@ export default (strapi: Strapi) => {
         );
       }
     }
+    // ZAM change
+    // add admin::user actions to list of registered actions
+    // so that we can create api token permission like admin::user.find
+    // and add it to a token to access admin::user related fields
+    const userActions = [
+      'find',
+      'findOne',
+    ]
+    await Promise.all(
+      userActions.map((action) => {
+        const actionUID = `admin::user.${action}`;
+        return providers.action.register(actionUID, {
+          api: 'admin::user',
+          controller: 'user',
+          action,
+          uid: actionUID
+        });
+      })
+    );
   };
 
   // Create an instance of a content-API permission engine

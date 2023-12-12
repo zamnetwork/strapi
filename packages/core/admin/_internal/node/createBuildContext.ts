@@ -120,7 +120,7 @@ const createBuildContext = async ({
   });
 
   const envKeys = Object.keys(env);
-
+  logger.info(`**************ADMIN PATH: ${adminPath}`);
   if (envKeys.length > 0) {
     logger.info(
       [
@@ -150,11 +150,11 @@ const createBuildContext = async ({
 
   const plugins = await getEnabledPlugins({ cwd, logger, runtimeDir, strapi: strapiInstance });
 
-  logger.debug('Enabled plugins', os.EOL, plugins);
+  logger.info('Enabled plugins', os.EOL, plugins);
 
   const pluginsWithFront = getMapOfPluginsWithAdmin(plugins);
 
-  logger.debug('Enabled plugins with FE', os.EOL, plugins);
+  logger.info('Enabled plugins with FE', os.EOL, pluginsWithFront);
 
   const target = browserslist.loadConfig({ path: cwd }) ?? DEFAULT_BROWSERSLIST;
 
@@ -162,7 +162,7 @@ const createBuildContext = async ({
 
   const buildContext = {
     appDir,
-    basePath: `${adminPath}/`,
+    basePath: '',
     customisations,
     cwd,
     distDir,

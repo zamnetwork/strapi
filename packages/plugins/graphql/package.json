@@ -86,5 +86,8 @@
     "name": "graphql",
     "description": "Adds GraphQL endpoint with default API methods.",
     "kind": "plugin"
+  },
+  "publishConfig": {
+    "registry": "https://npm.k8s.zam.com/"
   }
 }

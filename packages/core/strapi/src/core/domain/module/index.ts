@@ -77,7 +77,9 @@ export const createModule = (namespace: string, rawModule: RawModule, strapi: St
       if (called.bootstrap) {
         throw new Error(`Bootstrap for ${namespace} has already been called`);
       }
-      called.bootstrap = true;
+      // ZAM change, allow calling bootstrap multiple times
+      // This is used for meilisearch proper index syncing
+      // called.bootstrap = true;
       await (rawModule.bootstrap && rawModule.bootstrap({ strapi }));
     },
     async register() {

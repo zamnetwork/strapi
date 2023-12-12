@@ -123,11 +123,11 @@ module.exports = ({ strapi }) => {
       ...Object.values(strapi.contentTypes),
     ];
 
-    // Disable Shadow CRUD for admin content types
+    // Enable Shadow CRUD for admin content types // ZAM change
     contentTypes
       .map(prop('uid'))
       .filter(startsWith('admin::'))
-      .forEach((uid) => extensionService.shadowCRUD(uid).disable());
+      .forEach((uid) => extensionService.shadowCRUD(uid).isEnabled());
 
     const contentTypesWithShadowCRUD = contentTypes.filter((ct) =>
       extensionService.shadowCRUD(ct.uid).isEnabled()

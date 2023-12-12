@@ -298,7 +298,10 @@ export const createEntityManager = (db: Database): EntityManager => {
         .insert(dataToInsert)
         .execute<Array<ID | { id: ID }>>();
 
-      const id = isRecord(res[0]) ? res[0].id : res[0];
+      // ZAM change allows ids to be 0
+      let id;
+      if (res[0].id != undefined || res[0].id != null) id = res[0].id;
+      else id = res[0];
 
       const trx = await strapi.db.transaction();
       try {

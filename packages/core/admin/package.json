@@ -207,5 +207,8 @@
         ]
       }
     }
+  },
+  "publishConfig": {
+    "registry": "https://npm.k8s.zam.com/"
   }
 }

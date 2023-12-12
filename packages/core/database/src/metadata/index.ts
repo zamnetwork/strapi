@@ -36,9 +36,10 @@ export const createMetadata = (models: Model[] = []): Metadata => {
 
   // init pass
   for (const model of _.cloneDeep(models)) {
-    if ('id' in model.attributes) {
-      throw new Error('The attribute "id" is reserved and cannot be used in a model');
-    }
+    // ZAM change allow id in attributes
+    // if ('id' in model.attributes) {
+    //   throw new Error('The attribute "id" is reserved and cannot be used in a model');
+    // }
 
     metadata.add({
       ...model,

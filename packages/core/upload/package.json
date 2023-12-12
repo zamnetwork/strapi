@@ -27,6 +27,7 @@
       "require": "./strapi-server.js",
       "default": "./strapi-server.js"
     },
+    "./server/services/image-manipulation": "./server/services/image-manipulation.js",
     "./package.json": "./package.json"
   },
   "scripts": {
@@ -99,5 +100,8 @@
     "description": "Media file management.",
     "required": true,
     "kind": "plugin"
+  },
+  "publishConfig": {
+    "registry": "https://npm.k8s.zam.com/"
   }
 }

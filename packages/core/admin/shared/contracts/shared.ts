@@ -38,6 +38,10 @@ export interface AdminUser extends Entity {
   roles: AdminRole[];
   blocked: boolean;
   preferedLanguage?: string;
+  displayname?: string;
+  twitter?: string;
+  bio?: string;
+  gravatar?: string;
 }
 
 export type SanitizedAdminUser = Omit<

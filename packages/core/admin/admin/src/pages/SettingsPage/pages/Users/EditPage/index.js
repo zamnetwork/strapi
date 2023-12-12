@@ -43,7 +43,7 @@ import { editValidation } from '../utils/validations/users';
 import { putUser } from './utils/api';
 import layout from './utils/layout';
 
-const fieldsToPick = ['email', 'firstname', 'lastname', 'username', 'isActive', 'roles'];
+const fieldsToPick = ['email', 'firstname', 'lastname', 'username', 'isActive', 'roles', 'bio', 'gravatar', 'twitter', 'displayname'];
 
 const EditPage = ({ canUpdate }) => {
   const { formatMessage } = useIntl();

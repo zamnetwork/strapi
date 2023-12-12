@@ -10,7 +10,7 @@ const build = async (ctx: BuildContext) =>
     const config = await resolveProductionConfig(ctx);
     const finalConfig = await mergeConfigWithUserConfig(config, ctx);
 
-    ctx.logger.debug('Webpack config', finalConfig);
+    ctx.logger.info('Webpack config', JSON.stringify(finalConfig, null, 4));
 
     webpack(finalConfig, (err, stats) => {
       if (stats) {
