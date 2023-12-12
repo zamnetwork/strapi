@@ -8961,7 +8961,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/database@npm:4.15.5, @strapi/database@workspace:packages/core/database":
+"@strapi/database@npm:4.15.5":
+  version: 4.15.5
+  resolution: "@strapi/database@npm:4.15.5"
+  dependencies:
+    "@strapi/utils": "npm:4.15.5"
+    date-fns: "npm:2.30.0"
+    debug: "npm:4.3.4"
+    fs-extra: "npm:10.0.0"
+    knex: "npm:2.5.0"
+    lodash: "npm:4.17.21"
+    semver: "npm:7.5.4"
+    umzug: "npm:3.2.1"
+  checksum: b06a20a32c187b8a64a31c641acf1c23c755b44f62b3a634c16b8915a8ca590edb444b35b1508eee867511774352f9a0c0e14c0afbfc8823c57619f0867acf07
+  languageName: node
+  linkType: hard
+
+"@strapi/database@npm:4.15.5-beta.0, @strapi/database@workspace:packages/core/database":
   version: 0.0.0-use.local
   resolution: "@strapi/database@workspace:packages/core/database"
   dependencies:
@@ -10022,7 +10038,7 @@ __metadata:
     "@koa/router": "npm:10.1.1"
     "@strapi/admin": "npm:4.15.5"
     "@strapi/data-transfer": "npm:4.15.5"
-    "@strapi/database": "npm:4.15.5"
+    "@strapi/database": "npm:4.15.5-beta.0"
     "@strapi/generate-new": "npm:4.15.5"
     "@strapi/generators": "npm:4.15.5"
     "@strapi/logger": "npm:4.15.5"

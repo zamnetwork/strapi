@@ -116,7 +116,7 @@
     "@koa/router": "10.1.1",
     "@strapi/admin": "4.15.5",
     "@strapi/data-transfer": "4.15.5",
-    "@strapi/database": "4.15.5",
+    "@strapi/database": "4.15.5-beta.0",
     "@strapi/generate-new": "4.15.5",
     "@strapi/generators": "4.15.5",
     "@strapi/logger": "4.15.5",
