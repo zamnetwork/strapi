@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-upload",
-  "version": "4.15.5-beta.2",
+  "version": "4.15.5-beta.3",
   "description": "Makes it easy to upload images and files to your Strapi Application.",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
@@ -34,6 +34,12 @@
     },
     "./package.json": "./package.json"
   },
+  "files": [
+    "dist",
+    "strapi-server.js",
+    "server",
+    "admin"
+  ],
   "scripts": {
     "build": "pack-up build",
     "clean": "run -T rimraf dist",
