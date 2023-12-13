@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-upload",
-  "version": "4.15.5-beta.3",
+  "version": "4.15.5-beta.4",
   "description": "Makes it easy to upload images and files to your Strapi Application.",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
@@ -38,7 +38,8 @@
     "dist",
     "strapi-server.js",
     "server",
-    "admin"
+    "admin",
+    "documentation"
   ],
   "scripts": {
     "build": "pack-up build",
