@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-upload",
-  "version": "4.15.5-beta.1",
+  "version": "4.15.5-beta.2",
   "description": "Makes it easy to upload images and files to your Strapi Application.",
   "license": "SEE LICENSE IN LICENSE",
   "author": {
@@ -27,7 +27,11 @@
       "require": "./strapi-server.js",
       "default": "./strapi-server.js"
     },
-    "./server/services/image-manipulation": "./server/services/image-manipulation.js",
+    "./server/services/image-manipulation": {
+      "source": "./server/services/image-manipulation.js",
+      "require": "./server/services/image-manipulation.js",
+      "default": "./server/services/image-manipulation.js"
+    },
     "./package.json": "./package.json"
   },
   "scripts": {
