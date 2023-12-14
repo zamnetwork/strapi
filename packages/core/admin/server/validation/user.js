@@ -12,6 +12,10 @@ const userCreationSchema = yup
     lastname: validators.lastname,
     roles: validators.roles.min(1),
     preferedLanguage: yup.string().nullable(),
+    bio: yup.string().nullable(),
+    gravatar: yup.string().url().nullable(),
+    twitter: yup.string().url().nullable(),
+    displayname: yup.string().nullable(),
   })
   .noUnknown();
 
@@ -28,6 +32,10 @@ const profileUpdateSchema = yup
       .when('password', (password, schema) => (!isUndefined(password) ? schema.required() : schema))
       .notNull(),
     preferedLanguage: yup.string().nullable(),
+    bio: yup.string().nullable(),
+    gravatar: yup.string().url().nullable(),
+    twitter: yup.string().url().nullable(),
+    displayname: yup.string().nullable(),
   })
   .noUnknown();
 
@@ -41,6 +49,10 @@ const userUpdateSchema = yup
     password: validators.password.notNull(),
     isActive: yup.bool().notNull(),
     roles: validators.roles.min(1).notNull(),
+    bio: yup.string().nullable(),
+    gravatar: yup.string().url().nullable(),
+    twitter: yup.string().url().nullable(),
+    displayname: yup.string().nullable(),
   })
   .noUnknown();
 

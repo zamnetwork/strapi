@@ -98,6 +98,30 @@ module.exports = {
       required: false,
       searchable: false,
     },
+    bio: {
+      type: 'text',
+      unique: false,
+      configurable: false,
+      required: false,
+    },
+    gravatar: {
+      type: 'string',
+      unique: false,
+      configurable: false,
+      required: false,
+    },
+    twitter: {
+      type: 'string',
+      unique: false,
+      configurable: false,
+      required: false,
+    },
+    displayname: {
+      type: 'string',
+      unique: false,
+      configurable: false,
+      required: false,
+    },
   },
   config: {
     attributes: {
