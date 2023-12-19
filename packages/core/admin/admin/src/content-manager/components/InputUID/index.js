@@ -8,6 +8,7 @@ import {
   useNotification,
 } from '@strapi/helper-plugin';
 import { CheckCircle, ExclamationMarkCircle, Loader, Refresh } from '@strapi/icons';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useMutation, useQuery } from 'react-query';
@@ -20,6 +21,7 @@ import UID_REGEX from './regex';
 const InputUID = React.forwardRef(
   (
     {
+      attribute,
       contentTypeUID,
       hint,
       disabled,
@@ -40,7 +42,10 @@ const InputUID = React.forwardRef(
      * @type {string | null}
      */
     const debouncedValue = useDebounce(value, 300);
-    const { modifiedData, initialData } = useCMEditViewDataManager();
+    const { modifiedData, initialData, layout } = useCMEditViewDataManager();
+    const createdAtName = get(layout, ['options', 'timestamps', 0]);
+    const isCreation = !initialData[createdAtName];
+    const debouncedTargetFieldValue = useDebounce(modifiedData[attribute.targetField], 300);
     const toggleNotification = useNotification();
     const { formatAPIError } = useAPIErrorHandler();
     const { formatMessage } = useIntl();
@@ -164,6 +169,18 @@ const InputUID = React.forwardRef(
 
     const isLoading = isGeneratingDefaultUID || isGeneratingUID || isCheckingAvailability;
 
+    React.useEffect(() => {
+      if (
+        isCreation &&
+        debouncedTargetFieldValue &&
+        modifiedData[attribute.targetField] &&
+        !value
+      ) {
+        generateUID({ contentTypeUID, field: name, data: modifiedData });
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debouncedTargetFieldValue, isCreation]);
+
     return (
       <TextInput
         ref={forwardedRef}
@@ -252,6 +269,10 @@ const InputUID = React.forwardRef(
 );
 
 InputUID.propTypes = {
+  attribute: PropTypes.shape({
+    targetField: PropTypes.string,
+    required: PropTypes.bool,
+  }).isRequired,
   contentTypeUID: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   error: PropTypes.string,
