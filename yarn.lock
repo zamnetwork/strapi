@@ -9045,7 +9045,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/admin@npm:4.15.5-beta.3, @strapi/admin@workspace:packages/core/admin":
+"@strapi/admin@npm:4.15.5-beta.4, @strapi/admin@workspace:packages/core/admin":
   version: 0.0.0-use.local
   resolution: "@strapi/admin@workspace:packages/core/admin"
   dependencies:
@@ -10474,7 +10474,7 @@ __metadata:
   dependencies:
     "@koa/cors": "npm:3.4.3"
     "@koa/router": "npm:10.1.1"
-    "@strapi/admin": "npm:4.15.5-beta.3"
+    "@strapi/admin": "npm:4.15.5-beta.4"
     "@strapi/data-transfer": "npm:4.15.5"
     "@strapi/database": "npm:4.15.5-beta.0"
     "@strapi/generate-new": "npm:4.15.5"
