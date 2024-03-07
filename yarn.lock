@@ -9045,7 +9045,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/admin@npm:4.15.5-beta.4, @strapi/admin@workspace:packages/core/admin":
+"@strapi/admin@npm:^4.15.5-beta.9, @strapi/admin@workspace:packages/core/admin":
   version: 0.0.0-use.local
   resolution: "@strapi/admin@workspace:packages/core/admin"
   dependencies:
@@ -9059,7 +9059,7 @@ __metadata:
     "@strapi/design-system": "npm:1.13.0"
     "@strapi/helper-plugin": "npm:4.15.5"
     "@strapi/icons": "npm:1.13.0"
-    "@strapi/pack-up": "npm:4.15.5"
+    "@strapi/pack-up": "npm:^4.15.5-beta.9"
     "@strapi/permissions": "npm:4.15.5"
     "@strapi/provider-audit-logs-local": "npm:4.15.5"
     "@strapi/strapi": "npm:4.15.5"
@@ -9276,11 +9276,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/database@npm:4.15.5-beta.0, @strapi/database@workspace:packages/core/database":
+"@strapi/database@npm:^4.15.5-beta.9, @strapi/database@workspace:packages/core/database":
   version: 0.0.0-use.local
   resolution: "@strapi/database@workspace:packages/core/database"
   dependencies:
-    "@strapi/pack-up": "npm:4.15.5"
+    "@strapi/pack-up": "npm:^4.15.5-beta.9"
     "@strapi/utils": "npm:4.15.5"
     date-fns: "npm:2.30.0"
     debug: "npm:4.3.4"
@@ -9580,11 +9580,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/pack-up@npm:4.15.5, @strapi/pack-up@workspace:*, @strapi/pack-up@workspace:packages/utils/pack-up":
+"@strapi/pack-up@npm:4.15.5":
+  version: 4.15.5
+  resolution: "@strapi/pack-up@npm:4.15.5"
+  dependencies:
+    "@vitejs/plugin-react": "npm:4.1.0"
+    boxen: "npm:5.1.2"
+    browserslist-to-esbuild: "npm:1.2.0"
+    chalk: "npm:4.1.2"
+    chokidar: "npm:3.5.3"
+    commander: "npm:8.3.0"
+    esbuild: "npm:0.19.2"
+    esbuild-register: "npm:3.5.0"
+    get-latest-version: "npm:5.1.0"
+    git-url-parse: "npm:13.1.0"
+    ini: "npm:4.1.1"
+    ora: "npm:5.4.1"
+    outdent: "npm:0.8.0"
+    pkg-up: "npm:3.1.0"
+    prettier: "npm:2.8.4"
+    prettier-plugin-packagejson: "npm:2.4.5"
+    prompts: "npm:2.4.2"
+    rxjs: "npm:7.8.1"
+    typescript: "npm:5.2.2"
+    vite: "npm:4.4.9"
+    yup: "npm:0.32.9"
+  bin:
+    pack-up: bin/pack-up.js
+  checksum: 091c5159751dcdca6034db4b5d94a59e9f651584709683f3d31912e4868b94c0aff0cc9ee317f5a0f95403cdafe7f4cc250bdfce02863a49efce8d7609079024
+  languageName: node
+  linkType: hard
+
+"@strapi/pack-up@npm:^4.15.5-beta.9, @strapi/pack-up@workspace:*, @strapi/pack-up@workspace:packages/utils/pack-up":
   version: 0.0.0-use.local
   resolution: "@strapi/pack-up@workspace:packages/utils/pack-up"
   dependencies:
-    "@strapi/pack-up": "npm:4.15.5"
+    "@strapi/pack-up": "npm:^4.15.5-beta.9"
     "@types/git-url-parse": "npm:9.0.1"
     "@types/ini": "npm:1.3.31"
     "@types/prompts": "npm:2.4.4"
@@ -9930,7 +9961,7 @@ __metadata:
     "@strapi/design-system": "npm:1.13.0"
     "@strapi/helper-plugin": "npm:4.15.5"
     "@strapi/icons": "npm:1.13.0"
-    "@strapi/pack-up": "npm:4.15.5"
+    "@strapi/pack-up": "npm:^4.15.5-beta.9"
     "@strapi/strapi": "npm:4.15.5"
     "@strapi/utils": "npm:4.15.5"
     apollo-server-core: "npm:3.12.1"
@@ -10097,14 +10128,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-upload@npm:4.15.5-beta.5, @strapi/plugin-upload@workspace:packages/core/upload":
+"@strapi/plugin-upload@npm:^4.15.5-beta.9, @strapi/plugin-upload@workspace:packages/core/upload":
   version: 0.0.0-use.local
   resolution: "@strapi/plugin-upload@workspace:packages/core/upload"
   dependencies:
     "@strapi/design-system": "npm:1.13.0"
     "@strapi/helper-plugin": "npm:4.15.5"
     "@strapi/icons": "npm:1.13.0"
-    "@strapi/pack-up": "npm:4.15.5"
+    "@strapi/pack-up": "npm:^4.15.5-beta.9"
     "@strapi/provider-upload-local": "npm:4.15.5"
     "@strapi/strapi": "npm:4.15.5"
     "@strapi/utils": "npm:4.15.5"
@@ -10474,9 +10505,9 @@ __metadata:
   dependencies:
     "@koa/cors": "npm:3.4.3"
     "@koa/router": "npm:10.1.1"
-    "@strapi/admin": "npm:4.15.5-beta.4"
+    "@strapi/admin": "npm:^4.15.5-beta.9"
     "@strapi/data-transfer": "npm:4.15.5"
-    "@strapi/database": "npm:4.15.5-beta.0"
+    "@strapi/database": "npm:^4.15.5-beta.9"
     "@strapi/generate-new": "npm:4.15.5"
     "@strapi/generators": "npm:4.15.5"
     "@strapi/logger": "npm:4.15.5"
@@ -10485,7 +10516,7 @@ __metadata:
     "@strapi/plugin-content-manager": "npm:4.15.5"
     "@strapi/plugin-content-type-builder": "npm:4.15.5"
     "@strapi/plugin-email": "npm:4.15.5"
-    "@strapi/plugin-upload": "npm:4.15.5-beta.5"
+    "@strapi/plugin-upload": "npm:^4.15.5-beta.9"
     "@strapi/ts-zen": "npm:^0.2.0"
     "@strapi/types": "npm:4.15.5"
     "@strapi/typescript-utils": "npm:4.15.5"
