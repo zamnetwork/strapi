@@ -305,6 +305,10 @@ const ProfilePage = () => {
             firstname,
             lastname,
             username,
+            bio,
+            gravatar,
+            twitter,
+            displayname,
             preferedLanguage,
             currentTheme,
             ...passwordValues
@@ -339,6 +343,10 @@ const ProfilePage = () => {
                         lastname,
                         username,
                         email,
+                        bio,
+                        gravatar,
+                        twitter,
+                        displayname,
                       }}
                     />
                     {!hasLockedRole && (
