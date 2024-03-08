@@ -25,6 +25,10 @@ export declare namespace UpdateMe {
     firstname?: string;
     lastname?: string;
     username?: string;
+    bio?: string;
+    gravatar?: string;
+    twitter?: string;
+    displayname?: string;
     preferedLanguage?: string;
   }
 
