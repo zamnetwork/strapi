@@ -1,6 +1,6 @@
 {
   "name": "@strapi/plugin-graphql",
-  "version": "4.15.5-beta.0",
+  "version": "4.15.5-beta.1",
   "description": "Adds GraphQL endpoint with default API methods.",
   "repository": {
     "type": "git",
@@ -81,13 +81,13 @@
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
+  "publishConfig": {
+    "registry": "https://npm.k8s.zam.com/"
+  },
   "strapi": {
     "displayName": "GraphQL",
     "name": "graphql",
     "description": "Adds GraphQL endpoint with default API methods.",
     "kind": "plugin"
-  },
-  "publishConfig": {
-    "registry": "https://npm.k8s.zam.com/"
   }
 }
